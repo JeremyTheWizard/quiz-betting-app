@@ -5,3 +5,7 @@ declare module '*.svg' {
 
   export default content;
 }
+
+// fcl is a js library, so we need to declare it as a module
+declare module '@onflow/fcl';
+declare module '@onflow/fcl-wc';
