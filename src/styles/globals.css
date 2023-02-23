@@ -4,42 +4,35 @@
 
 :root {
   /* #region  /**=========== Primary Color =========== */
-  --tw-color-primary-50: 240 249 255;
-  --tw-color-primary-100: 224 242 254;
-  --tw-color-primary-200: 186 230 253;
-  --tw-color-primary-300: 125 211 252;
-  --tw-color-primary-400: 56 189 248;
-  --tw-color-primary-500: 14 165 233;
-  --tw-color-primary-600: 2 132 199;
-  --tw-color-primary-700: 3 105 161;
-  --tw-color-primary-800: 7 89 133;
-  --tw-color-primary-900: 12 74 110;
-  --color-primary-50: rgb(var(--tw-color-primary-50)); /* #f0f9ff */
-  --color-primary-100: rgb(var(--tw-color-primary-100)); /* #e0f2fe */
-  --color-primary-200: rgb(var(--tw-color-primary-200)); /* #bae6fd */
-  --color-primary-300: rgb(var(--tw-color-primary-300)); /* #7dd3fc */
-  --color-primary-400: rgb(var(--tw-color-primary-400)); /* #38bdf8 */
-  --color-primary-500: rgb(var(--tw-color-primary-500)); /* #0ea5e9 */
-  --color-primary-600: rgb(var(--tw-color-primary-600)); /* #0284c7 */
-  --color-primary-700: rgb(var(--tw-color-primary-700)); /* #0369a1 */
-  --color-primary-800: rgb(var(--tw-color-primary-800)); /* #075985 */
-  --color-primary-900: rgb(var(--tw-color-primary-900)); /* #0c4a6e */
+  /* green */
+  --tw-color-primary-50: 240 253 244;
+  --tw-color-primary-100: 220 252 231;
+  --tw-color-primary-200: 187 247 208;
+  --tw-color-primary-300: 134 239 172;
+  --tw-color-primary-400: 74 222 128;
+  --tw-color-primary-500: 23 255 22;
+  --tw-color-primary-600: 22 163 74;
+  --tw-color-primary-700: 21 128 61;
+  --tw-color-primary-800: 22 101 52;
+  --tw-color-primary-900: 20 83 45;
+  --color-primary-50: rgb(var(--tw-color-primary-50)); /* #f0fdf4 */
+  --color-primary-100: rgb(var(--tw-color-primary-100)); /* #dcfce7 */
+  --color-primary-200: rgb(var(--tw-color-primary-200)); /* #bbf7d0 */
+  --color-primary-300: rgb(var(--tw-color-primary-300)); /* #86efac */
+  --color-primary-400: rgb(var(--tw-color-primary-400)); /* #4ade80 */
+  --color-primary-500: rgb(var(--tw-color-primary-500)); /* #22c55e */
+  --color-primary-600: rgb(var(--tw-color-primary-600)); /* #16a34a */
+  --color-primary-700: rgb(var(--tw-color-primary-700)); /* #15803d */
+  --color-primary-800: rgb(var(--tw-color-primary-800)); /* #166534 */
+  --color-primary-900: rgb(var(--tw-color-primary-900)); /* #14532d */
+
+  /* yellow */
+  --tw-color-secondary-500: 242 243 2;
+  --color-secondary-500: rgb(var(--tw-color-primary-500)); /* #22c55e */
   /* #endregion  /**======== Primary Color =========== */
 }
 
 @layer base {
-  /* inter var - latin */
-  @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: optional;
-    src: url('/fonts/inter-var-latin.woff2') format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-      U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
-      U+2215, U+FEFF, U+FFFD;
-  }
-
   .cursor-newtab {
     cursor: url('/images/new-tab.png') 10 10, pointer;
   }
@@ -51,7 +44,7 @@
 
   h1,
   .h1 {
-    @apply font-primary text-2xl font-bold md:text-4xl;
+    @apply font-primary text-3xl font-bold md:text-4xl;
   }
 
   h2,
@@ -71,7 +64,7 @@
 
   body,
   .p {
-    @apply font-primary text-sm md:text-base;
+    @apply font-secondary text-white md:text-base;
   }
   /* #endregion  /**======== Typography =========== */
 
@@ -79,6 +72,10 @@
     /* 1100px */
     max-width: 68.75rem;
     @apply mx-auto w-11/12;
+  }
+
+  .text-gradient-primary {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
   }
 
   .bg-dark a.custom-link {
