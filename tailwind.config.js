@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['Inter', ...fontFamily.sans],
+        primary: ["'Lexend Exa'", ...fontFamily.sans],
+        secondary: ['poppins', ...fontFamily.sans],
       },
       colors: {
         primary: {
@@ -23,7 +24,10 @@ module.exports = {
           800: 'rgb(var(--tw-color-primary-800) / <alpha-value>)',
           900: 'rgb(var(--tw-color-primary-900) / <alpha-value>)',
         },
-        dark: '#222222',
+        secondary: {
+          500: 'rgb(var(--tw-color-secondary-500)) / <alpha-value>',
+        },
+        dark: '#1A181A',
       },
       keyframes: {
         flicker: {
@@ -49,6 +53,10 @@ module.exports = {
       animation: {
         flicker: 'flicker 3s linear infinite',
         shimmer: 'shimmer 1.3s linear infinite',
+      },
+      backgroundImage: {
+        'gradient-primary':
+          'linear-gradient(111.1deg, rgb(var(--tw-color-primary-500))  7.7%, rgb(var(--tw-color-secondary-500)) 87.64%)',
       },
     },
   },

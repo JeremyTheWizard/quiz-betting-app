@@ -7,6 +7,6 @@
   },
   "headwind.runOnSave": false,
   "typescript.preferences.importModuleSpecifier": "non-relative",
-  "cSpell.words": ["onflow", "unauthenticate"],
+  "cSpell.words": ["Lexend", "onflow", "unauthenticate"],
   "conventionalCommits.scopes": ["flow"]
 }

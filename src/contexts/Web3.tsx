@@ -86,7 +86,7 @@ export const Web3ContextProvider = ({
       addresses,
     } = NETWORK;
     const iconUrl = window.location.origin + '/images/image-placeholder.png';
-    const appTitle = process.env.NEXT_PUBLIC_APP_NAME || 'QUIZ BETTING APP';
+    const appTitle = process.env.NEXT_PUBLIC_APP_NAME || 'FANBET';
 
     fcl.config({
       'app.detail.title': appTitle,

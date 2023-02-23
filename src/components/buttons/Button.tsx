@@ -5,7 +5,7 @@ import { ImSpinner2 } from 'react-icons/im';
 import clsxm from '@/lib/clsxm';
 
 const ButtonVariant = ['primary', 'outline', 'ghost', 'light', 'dark'] as const;
-const ButtonSize = ['sm', 'base'] as const;
+const ButtonSize = ['sm', 'base', 'lg'] as const;
 
 type ButtonProps = {
   isLoading?: boolean;
@@ -44,12 +44,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         type='button'
         disabled={disabled}
         className={clsxm(
-          'inline-flex items-center rounded font-medium',
+          'inline-flex w-full items-center rounded-full text-center font-medium',
           'focus:outline-none focus-visible:ring focus-visible:ring-primary-500',
-          'shadow-sm',
           'transition-colors duration-75',
           //#region  //*=========== Size ===========
           [
+            size === 'lg' && ['px-3 py-3', 'text-base md:text-lg'],
             size === 'base' && ['px-3 py-1.5', 'text-sm md:text-base'],
             size === 'sm' && ['px-2 py-1', 'text-xs md:text-sm'],
           ],
@@ -66,7 +66,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             variant === 'outline' && [
               'text-primary-500',
               'border border-primary-500',
-              'hover:bg-primary-50 active:bg-primary-100 disabled:bg-primary-100',
+              'hover:bg-primary-600 hover:text-white disabled:bg-gray-500',
+              'shadow-[0px_4px_4px_rgba(29,255,20,0.4)]',
               isDarkBg &&
                 'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800',
             ],
@@ -129,7 +130,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             />
           </div>
         )}
-        {children}
+        {typeof children === 'string' ? (
+          <span className='w-full text-center'>{children}</span>
+        ) : (
+          children
+        )}
         {RightIcon && (
           <div
             className={clsxm([
