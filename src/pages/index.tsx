@@ -42,19 +42,33 @@ export default function HomePage() {
           className='mx-auto'
         />
       ),
-      description: '🤑 Bet against friends with NBA Top Shots and earn Flow',
+      description:
+        'Bet against your friends on your favorite sports and win NFTs',
     },
     {
       image: (
         <NextImage
-          src='/images/image-placeholder.png'
-          alt='Placeholder Image'
-          width={359}
-          height={359}
-          className='mx-auto'
+          src='/images/players-running.png'
+          alt='3 players running'
+          width={310}
+          height={310}
+          className='mx-auto flex h-[359px] w-[359px] items-center justify-center'
         />
       ),
-      description: '🤑 Bet against friends with NBA Top Shots and earn Flow',
+      description:
+        'Join the betting pool and compete for the NFTs of your favorite sports',
+    },
+    {
+      image: (
+        <NextImage
+          src='/images/phone-app.png'
+          alt='phone app'
+          width={359}
+          height={359}
+          className='mx-auto flex h-[359px] w-[359px] items-center justify-center'
+        />
+      ),
+      description: 'Are you ready to win big? Our AI will test your knowledge',
     },
   ];
 
@@ -74,7 +88,7 @@ export default function HomePage() {
 
         <section className='flex flex-col items-center '>
           <OnDarkLogo />
-          <Carousel className='w-screen' slide={false}>
+          <Carousel className='w-screen' slideInterval={3000}>
             {slides.map((slide, index) => (
               <div key={index}>
                 {slide.image}
