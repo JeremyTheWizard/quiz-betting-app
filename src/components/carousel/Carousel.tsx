@@ -223,14 +223,14 @@ const DefaultRightControl: FC = () => {
 };
 
 const styles = {
-  base: 'relative h-full w-full',
+  base: 'relative w-full',
   indicators: {
     active: {
       off: 'bg-gray-400 hover:bg-gray-500',
       on: 'bg-gradient-primary',
     },
     base: 'h-3 w-3 rounded-full',
-    wrapper: 'w-full flex gap-4 justify-center mt-6',
+    wrapper: 'w-full flex gap-4 justify-center ',
   },
   item: {
     base: '',
