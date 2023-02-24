@@ -20,7 +20,7 @@
   --color-primary-200: rgb(var(--tw-color-primary-200)); /* #bbf7d0 */
   --color-primary-300: rgb(var(--tw-color-primary-300)); /* #86efac */
   --color-primary-400: rgb(var(--tw-color-primary-400)); /* #4ade80 */
-  --color-primary-500: rgb(var(--tw-color-primary-500)); /* #22c55e */
+  --color-primary-500: rgb(var(--tw-color-primary-500)); /* #17FF16*/
   --color-primary-600: rgb(var(--tw-color-primary-600)); /* #16a34a */
   --color-primary-700: rgb(var(--tw-color-primary-700)); /* #15803d */
   --color-primary-800: rgb(var(--tw-color-primary-800)); /* #166534 */
@@ -28,7 +28,7 @@
 
   /* yellow */
   --tw-color-secondary-500: 242 243 2;
-  --color-secondary-500: rgb(var(--tw-color-primary-500)); /* #22c55e */
+  --color-secondary-500: rgb(var(--tw-color-primary-500)); /* #F4F302 */
   /* #endregion  /**======== Primary Color =========== */
 }
 

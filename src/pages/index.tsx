@@ -1,5 +1,11 @@
+import { useEffect, useState } from 'react';
+
+import 'react-circular-progressbar/dist/styles.css';
+
 import Button from '@/components/buttons/Button';
 import Carousel from '@/components/carousel/Carousel';
+import CircularProgress from '@/components/circular-progress/CircularProgress';
+import OnDarkLogo from '@/components/logos/OnDarkLogo';
 import NextImage from '@/components/NextImage';
 import Seo from '@/components/Seo';
 
@@ -15,6 +21,15 @@ import { useWeb3Context } from '@/contexts/Web3';
 
 export default function HomePage() {
   const { connect, user, logout } = useWeb3Context();
+  const [loginReady, setLoginReady] = useState(false);
+
+  useEffect(() => {
+    /* Due to bad browser performance preloading images, a timeout is used instead to still show the loading screen.
+    Check https://github.com/vercel/next.js/pull/19118 */
+    setTimeout(() => {
+      setLoginReady(true);
+    }, 2500);
+  }, []);
 
   const slides = [
     {
@@ -32,7 +47,7 @@ export default function HomePage() {
     {
       image: (
         <NextImage
-          src='/images/placeholder-image.png'
+          src='/images/image-placeholder.png'
           alt='Placeholder Image'
           width={359}
           height={359}
@@ -43,24 +58,22 @@ export default function HomePage() {
     },
   ];
 
-  return (
-    <>
-      {/* <Seo templateTitle='Home' /> */}
-      <Seo />
+  const renderPage = () => {
+    if (loginReady) {
+      return login();
+    } else {
+      return loading();
+    }
+  };
 
-      <main className='mx-auto max-w-[95vw] pt-16'>
-        <section className='flex min-h-screen flex-col items-center '>
-          <div className='space-y-2'>
-            <NextImage
-              src='/images/topshot-logo.png'
-              alt='Top Shot Logo'
-              width={253}
-              height={45.54}
-            />
-            <h1 className='text-gradient-primary text-center tracking-[0.4em]'>
-              FANBET
-            </h1>
-          </div>
+  const login = () => {
+    return (
+      <>
+        {/* <Seo templateTitle='Home' /> */}
+        <Seo />
+
+        <section className='flex flex-col items-center '>
+          <OnDarkLogo />
           <Carousel className='w-screen' slide={false}>
             {slides.map((slide, index) => (
               <div key={index}>
@@ -90,7 +103,31 @@ export default function HomePage() {
             </Button>
           </div>
         </section>
-      </main>
-    </>
+      </>
+    );
+  };
+
+  const loading = () => {
+    return (
+      <>
+        <OnDarkLogo />
+        <NextImage
+          src='/images/loading-app.png'
+          alt='loading app'
+          fill
+          className='relative left-2/4 mt-2 h-full w-screen -translate-x-1/2'
+          imgClassName='object-cover object-top '
+        />
+        <div className='absolute bottom-20 left-2/4 h-48 w-48 -translate-x-2/4'>
+          <CircularProgress duration={2000} intervalDuration={200} value={0} />
+        </div>
+      </>
+    );
+  };
+
+  return (
+    <main className='mx-auto flex h-screen max-w-[95vw] flex-col p-16 pb-0'>
+      {renderPage()}
+    </main>
   );
 }
