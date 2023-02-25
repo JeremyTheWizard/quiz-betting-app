@@ -229,7 +229,7 @@ const styles = {
       off: 'bg-gray-400 hover:bg-gray-500',
       on: 'bg-gradient-primary',
     },
-    base: 'h-3 w-3 rounded-full',
+    base: 'h-3 w-3 rounded-full mt-4',
     wrapper: 'w-full flex gap-4 justify-center ',
   },
   item: {

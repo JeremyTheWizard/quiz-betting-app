@@ -1,15 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /*TODO: resolve explicit any */
+import { FlowExtension } from '@magic-ext/flow';
+import { InstanceWithExtensions, SDKBase } from '@magic-sdk/provider';
+import { LoginWithMagicLinkConfiguration } from '@magic-sdk/types';
 import * as fcl from '@onflow/fcl';
 import { init } from '@onflow/fcl-wc';
+import { Magic } from 'magic-sdk';
 import router from 'next/router';
 import {
   createContext,
+  MutableRefObject,
   ReactNode,
   useCallback,
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 
@@ -17,13 +23,22 @@ import { NETWORK } from '@/constants/networks';
 import ROUTES from '@/constants/routes';
 
 interface IWeb3Context {
-  connect: () => void;
-  logout: () => void;
+  magicConnect: (configuration: LoginWithMagicLinkConfiguration) => void;
+  magicLogout: () => void;
+  fclConnect: () => void;
+  fclLogout: () => void;
   executeTransaction: (cadence: string, args?: any, options?: any) => void;
   executeScript: (cadence: string, args?: any) => any;
   user: {
-    loggedIn: boolean | null;
-    addr: string;
+    magic: {
+      loggedIn: boolean | null;
+      addr: string;
+      metadata: any;
+    };
+    fcl: {
+      loggedIn: boolean | null;
+      addr: string;
+    };
   };
   transaction: {
     id: string | null;
@@ -49,7 +64,21 @@ export const Web3ContextProvider = ({
   children: ReactNode;
   network?: string;
 }) => {
-  const [user, setUser] = useState({ loggedIn: null, addr: '' });
+  const [user, setUser] = useState<IWeb3Context['user']>({
+    magic: {
+      loggedIn: false,
+      addr: '',
+      metadata: {},
+    },
+    fcl: {
+      loggedIn: false,
+      addr: '',
+    },
+  });
+  const [fclUser, setFclUser] = useState<IWeb3Context['user']['fcl']>({
+    loggedIn: false,
+    addr: '',
+  });
   const [transactionInProgress, setTransactionInProgress] = useState(false);
   const [transactionStatus, setTransactionStatus] = useState<number | null>(
     null
@@ -57,6 +86,7 @@ export const Web3ContextProvider = ({
   const [transactionError, setTransactionError] = useState('');
   const [txId, setTxId] = useState(null);
   const [client, setClient] = useState(null);
+  const [magicIsLoggedIn, setMagicIsLoggedIn] = useState(false);
 
   const wcSetup = useCallback(async (appTitle: string, iconUrl: string) => {
     const DEFAULT_APP_METADATA = {
@@ -74,6 +104,25 @@ export const Web3ContextProvider = ({
 
     setClient(client);
     fcl.pluginRegistry.add(FclWcServicePlugin);
+  }, []);
+
+  const magic: MutableRefObject<
+    InstanceWithExtensions<SDKBase, FlowExtension[]> | undefined
+  > = useRef(undefined);
+
+  // set magic once the window object is available
+  useEffect(() => {
+    magic.current = new Magic(
+      process.env.NEXT_PUBLIC_MAGIC_TEST_API_KEY ?? '',
+      {
+        extensions: [
+          new FlowExtension({
+            rpcUrl: NETWORK.accessApi,
+            network: process.env.NEXT_PUBLIC_FLOW_ENV ?? 'testnet',
+          }),
+        ],
+      }
+    );
   }, []);
 
   useEffect(() => {
@@ -107,15 +156,65 @@ export const Web3ContextProvider = ({
     }
   }, [client, wcSetup]);
 
-  useEffect(() => fcl.currentUser.subscribe(setUser), []);
-
-  const connect = useCallback(() => {
-    fcl.authenticate();
+  //#region  //*=========== magic data setup ===========
+  useEffect(() => {
+    magic.current?.user.isLoggedIn().then(async (magicIsLoggedIn) => {
+      setMagicIsLoggedIn(magicIsLoggedIn);
+    });
   }, []);
 
-  const logout = useCallback(async () => {
+  useEffect(() => {
+    const setMagicData = async () => {
+      const metadata = await magic.current?.user.getMetadata();
+      setUser({
+        ...user,
+        magic: {
+          loggedIn: magicIsLoggedIn,
+          addr: metadata?.publicAddress ?? '',
+          metadata: await magic.current?.user.getMetadata(),
+        },
+      });
+    };
+
+    if (magicIsLoggedIn) {
+      setMagicData();
+    } else {
+      setUser({ ...user, magic: { loggedIn: false, addr: '', metadata: {} } });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [magicIsLoggedIn]);
+  //#endregion  //*======== magic data setup ===========
+
+  //#region  //*=========== fcl user setup ===========
+  useEffect(() => {
+    setUser({ ...user, fcl: fclUser });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fclUser]);
+
+  useEffect(() => fcl.currentUser.subscribe(setFclUser), []);
+  //#endregion  //*======== fcl user setup ===========
+
+  const fclConnect = useCallback(() => {
+    fcl.authenticate();
+    fcl;
+  }, []);
+
+  const fclLogout = useCallback(async () => {
     await fcl.unauthenticate();
     router.push(ROUTES.HOME);
+  }, []);
+
+  const magicConnect = useCallback(
+    async (configuration: LoginWithMagicLinkConfiguration) => {
+      await magic.current?.auth.loginWithMagicLink(configuration);
+      setMagicIsLoggedIn(true);
+    },
+    []
+  );
+
+  const magicLogout = useCallback(async () => {
+    setMagicIsLoggedIn(false);
+    await magic.current?.user.logout();
   }, []);
 
   const executeTransaction = useCallback(
@@ -162,8 +261,10 @@ export const Web3ContextProvider = ({
 
   const providerProps = useMemo(
     () => ({
-      connect,
-      logout,
+      magicConnect,
+      magicLogout,
+      fclConnect,
+      fclLogout,
       user,
       executeTransaction,
       executeScript,
@@ -175,8 +276,10 @@ export const Web3ContextProvider = ({
       },
     }),
     [
-      connect,
-      logout,
+      magicConnect,
+      magicLogout,
+      fclConnect,
+      fclLogout,
       txId,
       transactionInProgress,
       transactionStatus,

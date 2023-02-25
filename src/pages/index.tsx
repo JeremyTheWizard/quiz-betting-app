@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react';
 
 import 'react-circular-progressbar/dist/styles.css';
 
-import Button from '@/components/buttons/Button';
-import Carousel from '@/components/carousel/Carousel';
 import CircularProgress from '@/components/circular-progress/CircularProgress';
 import OnDarkLogo from '@/components/logos/OnDarkLogo';
 import NextImage from '@/components/NextImage';
-import Seo from '@/components/Seo';
 
 import { useWeb3Context } from '@/contexts/Web3';
+import Authentication from '@/features/auth/Authentication';
+import Game from '@/features/Game/Game';
 
 /**
  * SVGR Support
@@ -20,7 +19,7 @@ import { useWeb3Context } from '@/contexts/Web3';
  */
 
 export default function HomePage() {
-  const { connect, user, logout } = useWeb3Context();
+  const { user } = useWeb3Context();
   const [loginReady, setLoginReady] = useState(false);
 
   useEffect(() => {
@@ -28,97 +27,18 @@ export default function HomePage() {
     Check https://github.com/vercel/next.js/pull/19118 */
     setTimeout(() => {
       setLoginReady(true);
-    }, 2500);
+    }, 2800);
   }, []);
-
-  const slides = [
-    {
-      image: (
-        <NextImage
-          src='/images/fanbet-logo.png'
-          alt='Fanbet Logo'
-          width={359}
-          height={359}
-          className='mx-auto'
-        />
-      ),
-      description:
-        'Bet against your friends on your favorite sports and win NFTs',
-    },
-    {
-      image: (
-        <NextImage
-          src='/images/players-running.png'
-          alt='3 players running'
-          width={310}
-          height={310}
-          className='mx-auto flex h-[359px] w-[359px] items-center justify-center'
-        />
-      ),
-      description:
-        'Join the betting pool and compete for the NFTs of your favorite sports',
-    },
-    {
-      image: (
-        <NextImage
-          src='/images/phone-app.png'
-          alt='phone app'
-          width={359}
-          height={359}
-          className='mx-auto flex h-[359px] w-[359px] items-center justify-center'
-        />
-      ),
-      description: 'Are you ready to win big? Our AI will test your knowledge',
-    },
-  ];
 
   const renderPage = () => {
     if (loginReady) {
-      return login();
+      if (user.magic.loggedIn || user.fcl.loggedIn) {
+        return <Game />;
+      }
+      return <Authentication />;
     } else {
       return loading();
     }
-  };
-
-  const login = () => {
-    return (
-      <>
-        {/* <Seo templateTitle='Home' /> */}
-        <Seo />
-
-        <section className='flex flex-col items-center '>
-          <OnDarkLogo />
-          <Carousel className='w-screen' slideInterval={3000}>
-            {slides.map((slide, index) => (
-              <div key={index}>
-                {slide.image}
-                <p className='mx-auto max-w-[95vw] text-center text-lg'>
-                  {slide.description}
-                </p>
-              </div>
-            ))}
-          </Carousel>
-          <div className='mt-20 w-full space-y-4'>
-            <Button
-              onClick={user.loggedIn ? logout : connect}
-              variant='outline'
-              className='w-full'
-              size='lg'
-            >
-              {user.loggedIn ? 'Logout' : 'Login'}
-            </Button>
-            <Button
-              onClick={user.loggedIn ? logout : connect}
-              variant='outline'
-              className='w-full'
-              size='lg'
-            >
-              Create Account
-            </Button>
-          </div>
-        </section>
-      </>
-    );
   };
 
   const loading = () => {
@@ -126,21 +46,21 @@ export default function HomePage() {
       <>
         <OnDarkLogo />
         <NextImage
-          src='/images/loading-app.png'
+          src='/images/loading-app.gif'
           alt='loading app'
           fill
-          className='relative left-2/4 mt-2 h-full w-screen -translate-x-1/2'
-          imgClassName='object-cover object-top '
+          className='absolute left-2/4 top-0 h-full w-screen -translate-x-2/4'
+          imgClassName='object-cover object-top'
         />
         <div className='absolute bottom-20 left-2/4 h-48 w-48 -translate-x-2/4'>
-          <CircularProgress duration={2000} intervalDuration={200} value={0} />
+          <CircularProgress duration={2400} intervalDuration={200} value={0} />
         </div>
       </>
     );
   };
 
   return (
-    <main className='mx-auto flex h-screen max-w-[95vw] flex-col p-16 pb-0'>
+    <main className='mx-auto flex max-w-[85vw] flex-col pt-8 pb-10'>
       {renderPage()}
     </main>
   );
