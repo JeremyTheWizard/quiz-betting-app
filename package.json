@@ -18,9 +18,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@magic-ext/flow": "^8.4.0",
     "@onflow/fcl": "^1.3.2",
     "@onflow/fcl-wc": "^1.0.0",
     "clsx": "^1.2.1",
+    "magic-sdk": "^13.4.0",
     "next": "^13.1.6",
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",
