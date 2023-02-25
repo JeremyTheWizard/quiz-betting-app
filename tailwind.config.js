@@ -6,10 +6,17 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      screens: {
+        'mobile-s': '320px',
+        'mobile-m': '375px',
+        'mobile-l': '425px',
+      },
+
       fontFamily: {
         primary: ["'Lexend Exa'", ...fontFamily.sans],
         secondary: ['poppins', ...fontFamily.sans],
       },
+
       colors: {
         primary: {
           // Customize it on globals.css :root
@@ -49,11 +56,17 @@ module.exports = {
             backgroundPosition: '700px 0',
           },
         },
+        'friends-slider': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(calc(-135px*3))' },
+        },
       },
       animation: {
         flicker: 'flicker 3s linear infinite',
         shimmer: 'shimmer 1.3s linear infinite',
+        'auto-friends-slider': 'friends-slider 20s linear infinite',
       },
+
       backgroundImage: {
         'gradient-primary':
           'linear-gradient(111.1deg, rgb(var(--tw-color-primary-500))  7.7%, rgb(var(--tw-color-secondary-500)) 87.64%)',
