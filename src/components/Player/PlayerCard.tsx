@@ -2,14 +2,9 @@ import React from 'react';
 
 import NextImage from '@/components/NextImage';
 
-type Props = {
-  profileImage: string;
-  handle: string;
-  points: number;
-  countryImage: string;
-};
+import { Player } from '@/types/types';
 
-const FriendCard = ({ profileImage, handle, points, countryImage }: Props) => {
+const FriendCard = ({ profileImage, handle, points, countryImage }: Player) => {
   return (
     <div className='flex h-[100px] items-center bg-transparent'>
       <div className='flex h-[63px] w-[135px] flex-col justify-between space-y-1.5 rounded-lg bg-white p-1.5'>

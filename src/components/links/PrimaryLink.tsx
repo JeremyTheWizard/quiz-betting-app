@@ -4,7 +4,7 @@ import clsxm from '@/lib/clsxm';
 
 import UnstyledLink, {
   UnstyledLinkProps,
-} from '@/components/ui/links/UnstyledLink';
+} from '@/components/links/UnstyledLink';
 
 const PrimaryLinkVariant = ['primary', 'basic'] as const;
 type PrimaryLinkProps = {

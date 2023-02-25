@@ -8,6 +8,7 @@ import NextImage from '@/components/NextImage';
 
 import { useWeb3Context } from '@/contexts/Web3';
 import Authentication from '@/features/auth/Authentication';
+import QuizContextProvider from '@/features/Game/contexts/QuizContext';
 import Game from '@/features/Game/Game';
 
 /**
@@ -33,7 +34,11 @@ export default function HomePage() {
   const renderPage = () => {
     if (loginReady) {
       if (user.magic.loggedIn || user.fcl.loggedIn) {
-        return <Game />;
+        return (
+          <QuizContextProvider>
+            <Game />
+          </QuizContextProvider>
+        );
       }
       return <Authentication />;
     } else {
