@@ -1,7 +1,112 @@
-import React from 'react';
+import { RadioGroup } from '@headlessui/react';
+import React, { useEffect, useRef, useState } from 'react';
+import Countdown, { CountdownApi } from 'react-countdown';
+import { HiOutlineUserGroup } from 'react-icons/hi';
+import { RiTimerFlashLine } from 'react-icons/ri';
+
+import PercentageBar from '@/components/percentages/PercentageBar';
+
+import QuizCard from '@/features/Game/components/Quiz/QuizCard';
+import { useQuizContext } from '@/features/Game/contexts/QuizContext';
+
+import RadioOption from './radio/RadioOption';
 
 const Questions = () => {
-  return <div>Questions</div>;
+  const [questionNumber, setQuestionNumber] = useState(0);
+  const { preQuestions, questions, setActiveStep } = useQuizContext();
+  const [showAnswers, setShowAnswers] = useState(false);
+
+  const countdown: React.MutableRefObject<CountdownApi | null> = useRef(null);
+
+  const handleNextQuestion = () => {
+    if (questionNumber + 1 === questions.length) {
+      setActiveStep('post-questions');
+    } else {
+      setShowAnswers(false);
+      countdown.current?.start();
+      setQuestionNumber((prev) => prev + 1);
+    }
+  };
+
+  useEffect(() => {
+    if (showAnswers) {
+      countdown.current?.stop();
+      setTimeout(() => {
+        handleNextQuestion();
+      }, 500);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showAnswers]);
+
+  return (
+    <section>
+      <div className='flex w-full items-center gap-8'>
+        <div className='flex items-center gap-2'>
+          <span className='text-2xl text-primary-500'>
+            <HiOutlineUserGroup />
+          </span>
+          <span className='text-gradient-primary'>
+            {preQuestions.players.length}
+          </span>
+        </div>
+        <span className='w-full'>
+          <PercentageBar
+            percentage={70}
+            name={`Question ${questionNumber} of ${questions.length}`}
+          />
+        </span>
+      </div>
+      <QuizCard
+        title='Lebron James'
+        image={preQuestions.categoryImage}
+        className='mt-8'
+      />
+
+      <div className='my-8 flex w-full items-center justify-center gap-2 text-2xl'>
+        <span className='text-primary-500'>
+          <RiTimerFlashLine />
+        </span>
+        <Countdown
+          ref={(countdownRef) => {
+            countdown.current = countdownRef;
+          }}
+          date={Date.now() + 15000}
+          onComplete={() => setShowAnswers(true)}
+          zeroPadTime={1}
+          renderer={(props) => (
+            <>
+              <div className='text-gradient-primary flex text-xl'>
+                <span className='block w-6'>{props.seconds}</span>{' '}
+                <span>sec</span>
+              </div>
+            </>
+          )}
+        />
+      </div>
+
+      <p className='text-xl'>{questions[questionNumber].question}</p>
+      <RadioGroup
+        name='options'
+        className='mt-8 space-y-4'
+        disabled={showAnswers}
+        value={countdown.current?.isCompleted() && undefined}
+      >
+        {questions[questionNumber].options.map((option: string) => {
+          return (
+            <RadioOption
+              key={option}
+              value={option}
+              onClick={() => setShowAnswers(true)}
+              showAnswers={showAnswers}
+              correctAnswer={questions[questionNumber].answer === option}
+            >
+              {option}
+            </RadioOption>
+          );
+        })}
+      </RadioGroup>
+    </section>
+  );
 };
 
 export default Questions;

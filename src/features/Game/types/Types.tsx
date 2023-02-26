@@ -22,18 +22,16 @@ export type Quiz = {
   activeStep: 'pre-questions' | 'questions' | 'post-questions';
   preQuestions: PreQuestions;
   // TODO: Move the questions to a DB
-  questions: Questions;
+  questions: Question[];
 
   PostQuestions?: PostQuestions;
 };
 
-export type Questions = [
-  {
-    question: string;
-    options: string[];
-    answer: string;
-  }
-];
+export type Question = {
+  question: string;
+  options: string[];
+  answer: string;
+};
 
 export type PostQuestions = {
   placeholder: undefined;
