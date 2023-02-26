@@ -3,6 +3,8 @@ import { IoPersonOutline } from 'react-icons/io5';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { RiTimerFlashLine } from 'react-icons/ri';
 
+import clsxm from '@/lib/clsxm';
+
 type Props = {
   title: string;
   type?: string;
@@ -10,6 +12,7 @@ type Props = {
   entryPrice?: string;
   image: JSX.Element;
   time?: string;
+  className?: string;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const QuizCard = ({
@@ -19,16 +22,20 @@ const QuizCard = ({
   type,
   image,
   time,
+  className,
   ...rest
 }: Props) => {
   return (
     <div
       {...rest}
-      className='relative left-2/4 mx-auto flex h-[200px] w-screen -translate-x-2/4 items-end overflow-hidden bg-transparent mobile-m:h-[230px]'
+      className={clsxm(
+        'relative left-2/4 mx-auto flex h-[200px] w-screen -translate-x-2/4 items-end overflow-hidden bg-transparent mobile-m:h-[230px]',
+        className
+      )}
     >
       <div className='mx-auto flex h-[172px] w-full max-w-[85vw] rounded-xl bg-gradient-primary p-4 mobile-m:h-[200px]'>
         <div className='z-40 flex h-full w-1/3 flex-col'>
-          {time && entryPrice ? (
+          {time && !entryPrice ? (
             <>
               <div className='flex gap-2'>
                 <div className='rounded-lg bg-white'>
@@ -47,13 +54,15 @@ const QuizCard = ({
                 </div>
               </div>
             </>
-          ) : (
+          ) : time ? (
             <div className='flex items-center justify-center gap-2'>
               <span className='text-3xl'>
                 <RiTimerFlashLine />
               </span>
               <span className='text-xl font-semibold'>{time}</span>
             </div>
+          ) : (
+            <></>
           )}
           {type ? (
             <div className='mt-auto'>

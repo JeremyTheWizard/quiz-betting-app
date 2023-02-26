@@ -33,9 +33,20 @@ const PreQuestions = () => {
           <span className='font-secondary text-lg'>REWARD</span>
         </div>
         <NFTThumbnail />
+        <div className='relative -top-14 flex w-3/5 items-center justify-center rounded-3xl bg-white py-5'>
+          <div className='flex gap-1 text-black'>
+            <span className='h1 my-auto w-full text-center'>
+              ${preQuestions.NFTInfo.NFTTotalPrice}
+            </span>
+            <div className='my-auto w-full text-[10px]'>
+              <span className='block'>FLOW</span>
+              <span>Avg Sale</span>
+            </div>
+          </div>
+        </div>
         <div className='relative -top-8 w-full'>
           <div className='h3 rounded-full bg-gradient-primary p-2.5 text-black'>
-            <div className='flex gap-1'>
+            <div className='flex justify-center gap-1'>
               <span>MIN BET ${preQuestions.requiredBet}</span>
               <span className='text-[10px]'>FLOW</span>
             </div>
