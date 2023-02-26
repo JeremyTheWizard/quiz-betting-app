@@ -12,6 +12,10 @@ module.exports = {
         'mobile-l': '425px',
       },
 
+      fontSize: {
+        '2xs': '0.625rem',
+      },
+
       fontFamily: {
         primary: ["'Lexend Exa'", ...fontFamily.sans],
         secondary: ['poppins', ...fontFamily.sans],

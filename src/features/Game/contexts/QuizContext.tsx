@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext, useState } from 'react';
 
-import { PreQuestions, Questions, Quiz } from '@/features/Game/types/Types';
+import { PreQuestions, Question, Quiz } from '@/features/Game/types/Types';
 
 import { PostQuestions } from '../types/Types';
 
@@ -13,8 +13,8 @@ type QuizContext = {
   >;
   preQuestions: PreQuestions;
   setPreQuestions: React.Dispatch<React.SetStateAction<PreQuestions>>;
-  questions: Questions;
-  setQuestions: React.Dispatch<React.SetStateAction<Questions>>;
+  questions: Question[];
+  setQuestions: React.Dispatch<React.SetStateAction<Question[]>>;
   postQuestions: PostQuestions;
   setPostQuestions: React.Dispatch<React.SetStateAction<PostQuestions>>;
 };
@@ -35,18 +35,16 @@ const QuizContextProvider = ({ children }: { children: ReactNode }) => {
     useState<Quiz['activeStep']>('pre-questions');
   const [preQuestions, setPreQuestions] = useState<PreQuestions>({
     NFTInfo: {
-      NFTPreview: '',
-      NFTThumbnail: '',
       NFTId: '',
       NFTName: '',
       NFTDescription: '',
       NFTTotalPrice: '',
     },
     players: [{ profileImage: '', handle: '', points: 0, countryImage: '' }],
-    categoryImage: '',
+    categoryImage: <></>,
     requiredBet: '',
   });
-  const [questions, setQuestions] = useState<Questions>({} as Questions);
+  const [questions, setQuestions] = useState<Question[]>({} as Question[]);
   const [postQuestions, setPostQuestions] = useState<PostQuestions>(
     {} as PostQuestions
   );
