@@ -5,7 +5,14 @@ import { ImSpinner2 } from 'react-icons/im';
 
 import clsxm from '@/lib/clsxm';
 
-const ButtonVariant = ['primary', 'outline', 'ghost', 'light', 'dark'] as const;
+const ButtonVariant = [
+  'primary',
+  'outline',
+  'outlined-shadow',
+  'ghost',
+  'light',
+  'dark',
+] as const;
 const ButtonSize = ['sm', 'base', 'lg'] as const;
 
 type ButtonProps = {
@@ -51,20 +58,27 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           //#region  //*=========== Size ===========
           [
             size === 'lg' && ['py-4 px-3', 'text-base md:text-lg'],
-            size === 'base' && ['px-3 py-1.5', 'text-sm md:text-base'],
+            size === 'base' && ['px-4 py-1.5', 'text-sm md:text-base'],
             size === 'sm' && ['px-2 py-1', 'text-xs md:text-sm'],
           ],
           //#endregion  //*======== Size ===========
           //#region  //*=========== Variants ===========
           [
             variant === 'primary' && [
-              'bg-primary-500 text-white',
+              'bg-gradient-primary text-black',
               'border border-primary-600',
               'hover:bg-primary-600 hover:text-white',
               'active:bg-primary-700',
               'disabled:bg-primary-700',
             ],
             variant === 'outline' && [
+              'text-primary-500',
+              'border border-primary-500',
+              'hover:bg-primary-600 hover:text-white disabled:bg-gray-500',
+              isDarkBg &&
+                'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800',
+            ],
+            variant === 'outlined-shadow' && [
               'text-primary-500',
               'border border-primary-500',
               'hover:bg-primary-600 hover:text-white disabled:bg-gray-500',

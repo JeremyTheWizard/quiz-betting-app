@@ -5,6 +5,7 @@ import { HiOutlineUserGroup } from 'react-icons/hi';
 
 import Button from '@/components/buttons/Button';
 
+import InviteFriends from '@/features/Game/components/Quiz/InviteFriends';
 import NFTPreview from '@/features/Game/components/Quiz/NFTPreview';
 import NFTThumbnail from '@/features/Game/components/Quiz/NFTThumbnail';
 import PlayersInfiniteScroll from '@/features/Game/components/Quiz/PlayersInfiniteScroll';
@@ -13,6 +14,7 @@ import { useQuizContext } from '@/features/Game/contexts/QuizContext';
 const PreQuestions = () => {
   const { setActiveQuiz, preQuestions, setActiveStep } = useQuizContext();
   const [showNFTPreview, setShowNFTPreview] = useState(false);
+  const [showInviteFriends, setShowInviteFriends] = useState(false);
 
   const summary = () => {
     return (
@@ -64,7 +66,7 @@ const PreQuestions = () => {
                 <span>{preQuestions.players.length}</span>
               </div>
               <span
-                // onClick={() => ()}
+                onClick={() => setShowInviteFriends(true)}
                 className='text-gradient-primary text-sm font-bold'
               >
                 + Invite Friends
@@ -92,6 +94,9 @@ const PreQuestions = () => {
   const renderPreQuestions = () => {
     if (showNFTPreview) {
       return <NFTPreview setShowNFTPreview={setShowNFTPreview} />;
+    }
+    if (showInviteFriends) {
+      return <InviteFriends setOpen={setShowInviteFriends} />;
     }
     return summary();
   };

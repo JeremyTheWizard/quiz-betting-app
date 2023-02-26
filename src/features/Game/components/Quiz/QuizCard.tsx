@@ -33,7 +33,7 @@ const QuizCard = ({
         className
       )}
     >
-      <div className='mx-auto flex h-[172px] w-full max-w-[85vw] rounded-xl bg-gradient-primary p-4 mobile-m:h-[200px]'>
+      <div className='mx-auto flex h-[172px] w-full max-w-[90vw] rounded-xl bg-gradient-primary p-4 mobile-m:h-[200px]'>
         <div className='z-40 flex h-full w-1/3 flex-col'>
           {time && !entryPrice ? (
             <>

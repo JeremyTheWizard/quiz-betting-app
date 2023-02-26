@@ -65,7 +65,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className='mx-auto flex max-w-[85vw] flex-col pt-8 pb-10'>
+    <main className='mx-auto flex max-w-[90vw] flex-col pt-8 pb-10'>
       {renderPage()}
     </main>
   );

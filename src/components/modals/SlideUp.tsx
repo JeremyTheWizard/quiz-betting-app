@@ -48,7 +48,7 @@ export default function Example({ open, setOpen, children }: Props) {
                     <div className='absolute top-2 left-2/4 flex h-1 w-8 -translate-x-2/4 rounded-xl bg-gray-500'></div>
                   </Transition.Child>
                   <div className='flex w-full flex-col overflow-y-scroll rounded-xl bg-white py-6 shadow-xl'>
-                    <div className='mx-auto mt-2 h-full w-[85vw]'>
+                    <div className='mx-auto mt-2 h-full w-[90vw]'>
                       {children}
                     </div>
                   </div>
