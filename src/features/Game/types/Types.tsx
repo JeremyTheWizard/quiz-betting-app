@@ -3,8 +3,6 @@ import PostQuestions from '@/features/Game/components/Quiz/PostQuestions';
 import { Player } from '@/types/types';
 
 export type PreQuestionsNFTInfo = {
-  NFTPreview: string;
-  NFTThumbnail: string;
   NFTName: string;
   NFTDescription: string;
   NFTTotalPrice: string;

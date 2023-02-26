@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import * as React from 'react';
 import { IconType } from 'react-icons';
 import { ImSpinner2 } from 'react-icons/im';
@@ -49,7 +50,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           'transition-colors duration-75',
           //#region  //*=========== Size ===========
           [
-            size === 'lg' && ['px-3 py-3', 'text-base md:text-lg'],
+            size === 'lg' && ['py-4 px-3', 'text-base md:text-lg'],
             size === 'base' && ['px-3 py-1.5', 'text-sm md:text-base'],
             size === 'sm' && ['px-2 py-1', 'text-xs md:text-sm'],
           ],
@@ -85,8 +86,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'active:bg-white/80 disabled:bg-gray-200',
             ],
             variant === 'dark' && [
-              'bg-gray-900 text-white',
-              'border border-gray-600',
+              'bg-dark text-white',
+              'border border-primary-500',
               'hover:bg-gray-800 active:bg-gray-700 disabled:bg-gray-700',
             ],
           ],
@@ -131,7 +132,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           </div>
         )}
         {typeof children === 'string' ? (
-          <span className='w-full text-center'>{children}</span>
+          <span
+            className={clsx([
+              'w-full text-center',
+              variant === 'dark' && 'text-gradient-primary',
+            ])}
+          >
+            {children}
+          </span>
         ) : (
           children
         )}

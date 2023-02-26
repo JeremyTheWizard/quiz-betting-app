@@ -9,11 +9,17 @@ const nextConfig = {
 
   // Uncoment to add domain whitelist
   images: {
-    domains: ['i.pravatar.cc'],
+    domains: ['i.pravatar.cc', 'assets.nbatopshot.com'],
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'i.pravatar.cc',
+        port: '',
+        pathname: '*',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.nbatopshot.com',
         port: '',
         pathname: '*',
       },

@@ -11,9 +11,8 @@ const FriendCard = ({ profileImage, handle, points, countryImage }: Player) => {
         <div className='flex gap-2'>
           <NextImage
             src={profileImage}
-            width={32}
-            height={32}
-            className='absolute -top-[0.05rem] aspect-square'
+            fill
+            className='absolute -top-[0.05rem] aspect-square h-8 w-8 rounded-full'
             imgClassName='rounded-full'
             alt={`${handle} profile image`}
           />
