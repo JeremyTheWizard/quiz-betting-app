@@ -92,6 +92,10 @@ module.exports = {
           left: '50%',
           '@apply -translate-x-1/2 -translate-y-1/2': {},
         },
+        '.inset-x-center': {
+          left: '50%',
+          '@apply -translate-x-1/2': {},
+        },
       });
     },
   ],

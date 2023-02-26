@@ -36,7 +36,7 @@ export default function Login({ setSelectedAuth }: Props) {
             className='absolute left-2/4 top-0 h-full w-screen -translate-x-1/2'
             imgClassName='object-cover object-left-top opacity-50'
           />
-          <div className='min-w-screen absolute flex h-full w-full max-w-[85vw] flex-col items-center inset-center'>
+          <div className='min-w-screen absolute flex h-full w-full max-w-[90vw] flex-col items-center inset-center'>
             <div className='absolute flex h-full w-full flex-col items-center pt-24'>
               <div className='flex h-full w-full flex-col items-center justify-center'>
                 <span className='h2 text-center text-xl font-normal text-primary-500'>
