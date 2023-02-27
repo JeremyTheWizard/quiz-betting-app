@@ -83,7 +83,6 @@ const Game = () => {
           <div>
             <h2>Trending Quiz Bets</h2>
             <Carousel
-              slide={false}
               indicators={false}
               className='left-2/4 w-screen -translate-x-2/4 items-center justify-center child:gap-2'
             >
