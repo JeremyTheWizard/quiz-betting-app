@@ -34,27 +34,6 @@ const Game = () => {
   const [showInviteFriends, setShowInviteFriends] = useState(false);
   const { selectedTab } = useTabsContext();
 
-  const friends = [
-    {
-      profileImage: 'https://i.pravatar.cc/150?img=1',
-      handle: '@johndoe',
-      points: 100,
-      countryImage: '/images/image-placeholder.png',
-    },
-    {
-      profileImage: 'https://i.pravatar.cc/150?img=2',
-      handle: '@johndoe',
-      points: 100,
-      countryImage: '/images/image-placeholder.png',
-    },
-    {
-      profileImage: 'https://i.pravatar.cc/150?img=3',
-      handle: '@johndoe',
-      points: 100,
-      countryImage: '/images/image-placeholder.png',
-    },
-  ];
-
   const handleTrendingQuizClick = (quizIdentifier: string) => {
     setActiveQuiz(true);
     setActiveQuizStep('pre-questions');
@@ -153,7 +132,7 @@ const Game = () => {
                 + Invite Friends
               </span>
             </div>
-            <PlayersInfiniteScroll players={friends} />
+            <PlayersInfiniteScroll players={players} className='mt-6' />
           </div>
         </section>
         {createPortal(<Menu />, document.body)}

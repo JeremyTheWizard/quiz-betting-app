@@ -4,6 +4,8 @@ import clsxm from '@/lib/clsxm';
 
 import PlayerCard from '@/components/Player/PlayerCard';
 
+import { countryFlagsMapping } from '@/features/Game/constants/countryFlagsMapping';
+
 import { Player } from '@/types/types';
 
 type Props = {
@@ -19,14 +21,18 @@ const PlayersInfiniteScroll = ({ players, className }: Props) => {
         className,
       ])}
     >
-      {[...players, ...players].map((friend, index) => {
+      {[...players, ...players].map((player, index) => {
         return (
           <PlayerCard
             key={index}
-            profileImage={friend.profileImage}
-            handle={friend.handle}
-            points={friend.points}
-            countryImage={friend.countryImage}
+            profileImage={player.profileImage}
+            handle={player.handle}
+            points={player.points}
+            countryImage={
+              countryFlagsMapping[
+                player.country as keyof typeof countryFlagsMapping
+              ]
+            }
           />
         );
       })}
