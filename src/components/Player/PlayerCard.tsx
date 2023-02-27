@@ -22,10 +22,10 @@ const FriendCard = ({ profileImage, handle, points, countryImage }: Player) => {
         </div>
         <div className='mt-auto flex items-end justify-between gap-2'>
           <NextImage
-            src={countryImage}
+            src={countryImage ?? '/images/image-placeholder.png'}
             className='relative aspect-square h-6 w-6 rounded-full'
             fill
-            imgClassName='rounded-full'
+            imgClassName='rounded-full object-cover'
             alt={`${handle} profile image`}
           />
           <div className='rounded-full bg-dark p-1.5 text-[10px]'>
