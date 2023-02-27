@@ -24,7 +24,7 @@ const Payment = () => {
         </span>
         <div className='flex items-center gap-2'>
           <span className='text-primary-500'>
-            <MoneyBag color='#17FF16' />
+            <MoneyBag />
           </span>
           <span className='text-lg text-primary-500'>Balance</span>
         </div>
