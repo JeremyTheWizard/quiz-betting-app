@@ -2,7 +2,7 @@ import PostQuestions from '@/features/Game/components/Quiz/PostQuestions';
 
 import { Player } from '@/types/types';
 
-export type PreQuestionsNFTInfo = {
+export type NFTThumbnailInfo = {
   NFTName: string;
   NFTDescription: string;
   NFTTotalPrice: string;
@@ -10,7 +10,7 @@ export type PreQuestionsNFTInfo = {
 };
 
 export type PreQuestions = {
-  NFTInfo: PreQuestionsNFTInfo;
+  NFTInfo: NFTThumbnailInfo;
   categoryImage: JSX.Element;
   requiredBet: string;
   players: Player[];
