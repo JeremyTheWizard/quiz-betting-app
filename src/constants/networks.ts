@@ -1,6 +1,6 @@
 const FLOW_ENV = process.env.NEXT_PUBLIC_FLOW_ENV || 'testnet';
 
-const NETWORKS = {
+export const NETWORKS = {
   emulator: {
     flowNetwork: 'local',
     accessApi: process.env.NEXT_PUBLIC_EMULATOR_API || 'http://localhost:8888',
