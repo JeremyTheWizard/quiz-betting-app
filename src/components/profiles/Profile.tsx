@@ -6,7 +6,7 @@ const profile = () => {
   return (
     <div className='flex flex-col items-center gap-3'>
       <NextImage
-        src='/images/image-placeholder.png'
+        src='/images/demo-profile.png'
         alt='Image placeholder'
         className='relative h-32 w-32 rounded-full border-4 border-primary-500'
         imgClassName='object-cover rounded-full'

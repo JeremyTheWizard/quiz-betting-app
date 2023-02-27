@@ -37,7 +37,10 @@ const PreQuestions = () => {
             </span>
             <span className='font-secondary text-lg'>REWARD</span>
           </div>
-          <NFTThumbnail onClick={() => setShowNFTPreview(true)} />
+          <NFTThumbnail
+            NFTFlowId={preQuestions.NFTInfo.NFTId}
+            onClick={() => setShowNFTPreview(true)}
+          />
           <div className='relative -top-14 flex w-3/5 items-center justify-center rounded-3xl bg-white py-5'>
             <div className='flex gap-1 text-black'>
               <span className='h1 my-auto w-full text-center'>

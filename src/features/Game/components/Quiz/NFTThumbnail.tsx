@@ -1,20 +1,48 @@
-import React from 'react';
+import axios from 'axios';
+import clsx from 'clsx';
+import React, { useCallback, useEffect, useState } from 'react';
 
 // use npm published version
 import clsxm from '@/lib/clsxm';
+import { thousandSeparator } from '@/lib/thousandSeparator';
 
 import { NFTMedia } from '@/features/Game/constants/NFTs';
-import { useQuizContext } from '@/features/Game/contexts/QuizContext';
+import { NFTThumbnailInfo } from '@/features/Game/types/Types';
 
 type Props = {
   className?: string;
+  NFTFlowId: string;
+  showPrice?: boolean;
 } & React.ComponentPropsWithRef<'div'>;
 
-const NFTThumbnail = ({ className, ...rest }: Props) => {
-  const { preQuestions } = useQuizContext();
+const NFTThumbnail = ({ NFTFlowId, showPrice, className, ...rest }: Props) => {
+  const [NFTInfo, setNFTInfo] = useState<NFTThumbnailInfo | undefined>();
+
+  const getNFTFlowIdInfo = useCallback(async () => {
+    try {
+      const data = await axios
+        .get('/api/grapql/minted-moment', {
+          params: { flowid: NFTFlowId },
+        })
+        .then((res) => res.data.data);
+
+      setNFTInfo({
+        NFTId: data.getMintedMoment.data.play.id,
+        NFTName: data.getMintedMoment.data.play.headline,
+        NFTDescription: data.getMintedMoment.data.play.shortDescription,
+        NFTTotalPrice: data.getMintedMoment.data.price,
+      });
+    } catch (e) {
+      return e;
+    }
+  }, [NFTFlowId]);
+
+  useEffect(() => {
+    getNFTFlowIdInfo();
+  }, [getNFTFlowIdInfo]);
 
   return (
-    <>
+    <div>
       <div
         {...rest}
         className={clsxm([
@@ -25,18 +53,47 @@ const NFTThumbnail = ({ className, ...rest }: Props) => {
         <div className='absolute -bottom-1 left-2/4 h-2 w-8/12 -translate-x-2/4 bg-dark'></div>
         <div className='absolute -bottom-0 left-2/4 h-16 w-[calc(66.66666%+4px)] -translate-x-2/4 rounded-t-3xl border-2 border-b-0  border-primary-500'></div>
         <div className='flex w-full flex-col items-center self-start'>
-          <span className='h2'>{preQuestions.NFTInfo.NFTName}</span>
-          <p className='text-[10px]'>{preQuestions.NFTInfo.NFTDescription}</p>
+          <span className='h2'>{NFTInfo?.NFTName ?? 'loading...'}</span>
+          <p className='text-center text-[10px]'>
+            {NFTInfo?.NFTDescription ?? 'loading...'}
+          </p>
           <video
             className='mt-2 h-full w-full'
-            src={NFTMedia(preQuestions.NFTInfo.NFTId, 'video')}
+            src={NFTMedia(NFTFlowId, 'video')}
             autoPlay
             loop
             muted
           />
         </div>
       </div>
-    </>
+      {showPrice && (
+        <div className='flex w-full justify-center'>
+          <div className='relative -top-14 flex w-3/5 items-center justify-center rounded-3xl bg-white py-5'>
+            <div className='flex gap-1 text-black'>
+              <span
+                className={clsx([
+                  'h1 my-auto w-full break-all text-center',
+                  NFTInfo == undefined && 'text-sm',
+                  !NFTInfo?.NFTTotalPrice && 'text-sm',
+                ])}
+              >
+                {NFTInfo
+                  ? NFTInfo.NFTTotalPrice
+                    ? thousandSeparator(NFTInfo.NFTTotalPrice).split('.')[0]
+                    : 'NOT FOR SALE'
+                  : 'loading...'}
+              </span>
+              {NFTInfo?.NFTTotalPrice ? (
+                <div className='my-auto text-[10px]'>
+                  <span className='block'>FLOW</span>
+                  <span>Avg Sale</span>
+                </div>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

@@ -3,9 +3,9 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { CiMedal } from 'react-icons/ci';
 
 import Button from '@/components/buttons/Button';
-import LeaderBoard from '@/components/leader-board/LeaderBoard';
 import Profile from '@/components/profiles/Profile';
 
+import LeaderBoardTable from '@/features/Game/components/Quiz/leader-board-table/LeaderBoardTable';
 import NFTThumbnail from '@/features/Game/components/Quiz/NFTThumbnail';
 import { useQuizContext } from '@/features/Game/contexts/QuizContext';
 
@@ -39,7 +39,7 @@ const PostQuestions = () => {
 
       <>
         <Profile />
-        <LeaderBoard className='mt-6' />
+        <LeaderBoardTable className='mt-6' />
       </>
 
       <Button
