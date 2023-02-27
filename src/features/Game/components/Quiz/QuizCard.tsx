@@ -5,6 +5,8 @@ import { RiTimerFlashLine } from 'react-icons/ri';
 
 import clsxm from '@/lib/clsxm';
 
+import QuizCardBG from '@/features/Game/components/SVGs/QuizCardBG';
+
 type Props = {
   title: string;
   type?: string;
@@ -34,6 +36,11 @@ const QuizCard = ({
       )}
     >
       <div className='mx-auto flex h-[172px] w-full max-w-[85vw] rounded-xl bg-gradient-primary p-4 mobile-m:h-[200px]'>
+        <QuizCardBG
+          className='absolute left-0 top-0'
+          width='285px'
+          height='355px'
+        />
         <div className='z-40 flex h-full w-1/3 flex-col'>
           {time && !entryPrice ? (
             <>
