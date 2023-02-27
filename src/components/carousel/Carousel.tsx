@@ -29,6 +29,9 @@ export interface CarouselProps
   slide?: boolean;
   slideInterval?: number;
   children: ReactNode | ReactNode[];
+  scrollContainerClassName?: string;
+  itemWrapperClassName?: string;
+  initialScrollPosition?: number;
 }
 
 const Carousel: FC<CarouselProps> = ({
@@ -40,6 +43,9 @@ const Carousel: FC<CarouselProps> = ({
   slide = true,
   slideInterval,
   className,
+  scrollContainerClassName,
+  itemWrapperClassName,
+  initialScrollPosition = 0,
   ...props
 }): JSX.Element => {
   const isDeviceMobile =
@@ -58,6 +64,12 @@ const Carousel: FC<CarouselProps> = ({
       ),
     [children]
   );
+
+  useEffect(() => {
+    if (carouselContainer.current) {
+      carouselContainer.current.scrollLeft = initialScrollPosition;
+    }
+  }, [initialScrollPosition]);
 
   const navigateTo = useCallback(
     (item: number) => () => {
@@ -102,9 +114,10 @@ const Carousel: FC<CarouselProps> = ({
       {...props}
     >
       <ScrollContainer
-        className={clsx(
+        className={clsxm(
           styles.scrollContainer.base,
-          (isDeviceMobile || !isDragging) && styles.scrollContainer.snap
+          (isDeviceMobile || !isDragging) && styles.scrollContainer.snap,
+          scrollContainerClassName
         )}
         draggingClassName='cursor-grab'
         innerRef={carouselContainer}
@@ -116,7 +129,7 @@ const Carousel: FC<CarouselProps> = ({
           (item, index): JSX.Element => (
             <div
               key={index}
-              className={styles.item.wrapper}
+              className={clsxm(styles.item.wrapper, itemWrapperClassName)}
               data-active={activeItem === index}
               data-testid='carousel-item'
             >

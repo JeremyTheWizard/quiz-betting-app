@@ -9,6 +9,7 @@ import NextImage from '@/components/NextImage';
 import { useWeb3Context } from '@/contexts/Web3';
 import Authentication from '@/features/auth/Authentication';
 import QuizContextProvider from '@/features/Game/contexts/QuizContext';
+import TabsContextProvider from '@/features/Game/contexts/TabsContext';
 import Game from '@/features/Game/Game';
 
 /**
@@ -36,7 +37,9 @@ export default function HomePage() {
       if (user.magic.loggedIn || user.fcl.loggedIn) {
         return (
           <QuizContextProvider>
-            <Game />
+            <TabsContextProvider>
+              <Game />
+            </TabsContextProvider>
           </QuizContextProvider>
         );
       }

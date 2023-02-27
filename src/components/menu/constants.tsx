@@ -6,23 +6,20 @@ import MoneyBag from '@/components/SVGs/MoneyBag';
 
 export const menuItems = [
   {
-    name: 'Home',
+    name: 'home',
     path: '/',
     icon: <TiHomeOutline />,
   },
   {
-    name: 'Leader board',
-    path: '/leader-board',
+    name: 'leader-board',
     icon: <CiMedal />,
   },
   {
-    name: 'Money',
-    path: '/money',
+    name: 'payment',
     icon: <MoneyBag />,
   },
   {
-    name: 'Profile',
-    path: '/profile',
+    name: 'profile',
     icon: <IoPersonOutline />,
   },
-];
+] as const;

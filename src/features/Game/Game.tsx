@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import Button from '@/components/buttons/Button';
 import Carousel from '@/components/carousel/Carousel';
 import Menu from '@/components/menu/Menu';
+import Profile from '@/components/profiles/Profile';
 
+import LeaderBoard from '@/features/Game/components/leader-board/LeaderBoard';
+import Payment from '@/features/Game/components/payment/Payment';
+import InviteFriends from '@/features/Game/components/Quiz/InviteFriends';
 import PlayersInfiniteScroll from '@/features/Game/components/Quiz/PlayersInfiniteScroll';
 import Quiz from '@/features/Game/components/Quiz/Quiz';
 import QuizCard from '@/features/Game/components/Quiz/QuizCard';
@@ -14,6 +18,7 @@ import { players } from '@/features/Game/constants/players';
 import { questions } from '@/features/Game/constants/questions';
 import { trendingQuizzes } from '@/features/Game/constants/quizzes';
 import { useQuizContext } from '@/features/Game/contexts/QuizContext';
+import { useTabsContext } from '@/features/Game/contexts/TabsContext';
 
 import { tierQuizzes } from './constants/quizzes';
 import TextField from '../../components/inputs/TextField';
@@ -26,6 +31,8 @@ const Game = () => {
     setActiveQuiz,
     activeQuiz,
   } = useQuizContext();
+  const [showInviteFriends, setShowInviteFriends] = useState(false);
+  const { selectedTab } = useTabsContext();
 
   const friends = [
     {
@@ -139,7 +146,10 @@ const Game = () => {
           <div>
             <div className='flex items-center justify-between gap-3'>
               <h2>Friends</h2>
-              <span className='text-gradient-primary text-sm font-bold'>
+              <span
+                onClick={() => setShowInviteFriends(true)}
+                className='text-gradient-primary text-sm font-bold'
+              >
                 + Invite Friends
               </span>
             </div>
@@ -155,7 +165,23 @@ const Game = () => {
     if (activeQuiz) {
       return <Quiz />;
     }
-    return home();
+    if (showInviteFriends) {
+      return <InviteFriends setOpen={setShowInviteFriends} />;
+    }
+    if (selectedTab === 'home') {
+      return home();
+    }
+    if (selectedTab === 'leader-board') {
+      return <LeaderBoard />;
+    }
+    if (selectedTab === 'payment') {
+      return <Payment />;
+    }
+    if (selectedTab === 'profile') {
+      return <Profile />;
+    }
+
+    return <></>;
   };
 
   return renderGame();

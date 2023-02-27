@@ -4,13 +4,18 @@ import clsxm from '@/lib/clsxm';
 
 type Props = {
   startAdornment?: React.ReactNode | 'search';
+  endAdornment?: React.ReactNode;
   placeHolder?: string;
   className?: string;
   inputClassName?: string;
+
+  endAdornmentClassName?: string;
 } & JSX.IntrinsicElements['input'];
 
 const TextField = ({
   startAdornment,
+  endAdornment,
+  endAdornmentClassName,
   className,
   inputClassName,
   placeHolder,
@@ -36,15 +41,24 @@ const TextField = ({
         type='text'
         id='main-search'
         className={clsxm(
-          inputClassName,
           startAdornment && '!pl-12',
           'w-full rounded-lg border border-gray-300 bg-gray-50 p-3.5 text-sm text-gray-900',
-          'focus:border-blue-500 focus:ring-blue-500'
+          'focus:border-blue-500 focus:ring-blue-500',
+          inputClassName
         )}
         placeholder={placeHolder}
         required
         {...props}
       />
+      <div
+        className={clsxm(
+          startAdornment && 'pl-4',
+          'pointer-events-none absolute inset-y-0 right-5 flex items-center',
+          endAdornmentClassName
+        )}
+      >
+        {endAdornment && endAdornment}
+      </div>
     </div>
   );
 };
