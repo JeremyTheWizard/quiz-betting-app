@@ -43,7 +43,7 @@ const Game = () => {
       NFTs[category.player?.name || category.team?.name || 'Lebron James'];
 
     setPreQuestions({
-      NFTInfo: NFTInfo[Math.floor(Math.random() * NFTInfo?.length ?? 0)],
+      NFTFlowId: NFTInfo[Math.floor(Math.random() * NFTInfo?.length ?? 0)],
       players: players,
       requiredBet: trendingQuizzes[quizIdentifier].entryPrice,
       categoryImage: trendingQuizzes[quizIdentifier].image,

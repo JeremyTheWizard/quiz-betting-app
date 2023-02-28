@@ -24,6 +24,7 @@ export default async function handler(
           data {
             play {
               id
+              version
               headline
               shortDescription
             }

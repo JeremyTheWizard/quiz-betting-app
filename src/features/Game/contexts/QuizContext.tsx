@@ -1,6 +1,11 @@
 import React, { ReactNode, useContext, useState } from 'react';
 
-import { PreQuestions, Question, Quiz } from '@/features/Game/types/Types';
+import {
+  NFTInfo,
+  PreQuestions,
+  Question,
+  Quiz,
+} from '@/features/Game/types/Types';
 
 import { PostQuestions } from '../types/Types';
 
@@ -17,6 +22,11 @@ type QuizContext = {
   setQuestions: React.Dispatch<React.SetStateAction<Question[]>>;
   postQuestions: PostQuestions;
   setPostQuestions: React.Dispatch<React.SetStateAction<PostQuestions>>;
+
+  NFTInfo: NFTInfo;
+  setNFTInfo: React.Dispatch<React.SetStateAction<NFTInfo>>;
+
+  reset: () => void;
 };
 
 export const QuizContext = React.createContext<QuizContext>({} as QuizContext);
@@ -34,12 +44,7 @@ const QuizContextProvider = ({ children }: { children: ReactNode }) => {
   const [activeStep, setActiveStep] =
     useState<Quiz['activeStep']>('pre-questions');
   const [preQuestions, setPreQuestions] = useState<PreQuestions>({
-    NFTInfo: {
-      NFTId: '',
-      NFTName: '',
-      NFTDescription: '',
-      NFTTotalPrice: '',
-    },
+    NFTFlowId: '',
     players: [{ profileImage: '', handle: '', points: 0, countryImage: '' }],
     categoryImage: <></>,
     requiredBet: '',
@@ -48,6 +53,38 @@ const QuizContextProvider = ({ children }: { children: ReactNode }) => {
   const [postQuestions, setPostQuestions] = useState<PostQuestions>(
     {} as PostQuestions
   );
+  const [NFTInfo, setNFTInfo] = useState<NFTInfo>({
+    NFTId: '',
+    NFTName: '',
+    NFTDescription: '',
+    NFTTotalPrice: '',
+    NFTVideoSrc: '',
+    maxBet: '',
+    version: '',
+  });
+
+  const reset = () => {
+    setNFTInfo({
+      NFTId: '',
+      NFTName: '',
+      NFTDescription: '',
+      NFTTotalPrice: '',
+      NFTVideoSrc: '',
+      maxBet: '',
+      version: '',
+    });
+
+    setPreQuestions({
+      NFTFlowId: '',
+      players: [{ profileImage: '', handle: '', points: 0, countryImage: '' }],
+      categoryImage: <></>,
+      requiredBet: '',
+    });
+    setActiveQuiz(false);
+    setActiveStep('pre-questions');
+    setQuestions({} as Question[]);
+    setPostQuestions({} as PostQuestions);
+  };
 
   return (
     <QuizContext.Provider
@@ -62,6 +99,9 @@ const QuizContextProvider = ({ children }: { children: ReactNode }) => {
         setQuestions,
         postQuestions,
         setPostQuestions,
+        NFTInfo,
+        setNFTInfo,
+        reset,
       }}
     >
       {children}
