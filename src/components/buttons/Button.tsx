@@ -72,7 +72,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'disabled:bg-primary-700',
             ],
             variant === 'outline' && [
-              'text-gradient-primary',
               'border border-primary-500',
               'hover:bg-primary-600 hover:text-white disabled:bg-gray-500',
               isDarkBg &&
@@ -150,6 +149,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             className={clsx([
               'w-full text-center',
               variant === 'dark' && 'text-gradient-primary',
+              variant === 'outline' && 'text-gradient-primary',
             ])}
           >
             {children}
