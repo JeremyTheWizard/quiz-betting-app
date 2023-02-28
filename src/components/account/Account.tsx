@@ -1,10 +1,8 @@
 import React from 'react';
-import { createPortal } from 'react-dom';
 
-import Menu from '@/components/menu/Menu';
 import NextImage from '@/components/NextImage';
 
-const Profile = () => {
+const Account = () => {
   return (
     <>
       <div className='mt-6 flex flex-col items-center gap-3'>
@@ -17,13 +15,9 @@ const Profile = () => {
         />
         <span className='block'>IamjackRider</span>
         <span className='text-gradient-primary block'>3950 pts.</span>
-        <span className='h1 text-gradient-primary absolute text-center inset-center'>
-          Under Construction
-        </span>
       </div>
-      {createPortal(<Menu />, document.body)}
     </>
   );
 };
 
-export default Profile;
+export default Account;

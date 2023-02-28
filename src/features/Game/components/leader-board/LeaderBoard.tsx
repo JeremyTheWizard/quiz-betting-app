@@ -4,8 +4,8 @@ import { CiMedal } from 'react-icons/ci';
 import { IoDiamondOutline } from 'react-icons/io5';
 import { RiVipCrownLine } from 'react-icons/ri';
 
+import Account from '@/components/account/Account';
 import Menu from '@/components/menu/Menu';
-import Profile from '@/components/profiles/Profile';
 import Tab from '@/components/tabs/Tab';
 import TabGroup from '@/components/tabs/TabGroup';
 import TabPanel from '@/components/tabs/TabPanel';
@@ -62,7 +62,7 @@ const LeaderBoard = () => {
               />
             </TabPanel>
             <TabPanel>
-              <Profile />
+              <Account />
               <LeaderBoardTable
                 className='mt-8'
                 figureClassName='border-transparent'
