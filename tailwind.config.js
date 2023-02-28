@@ -62,7 +62,7 @@ module.exports = {
         },
         'friends-slider': {
           '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(calc(-135px*3))' },
+          '100%': { transform: 'translateX(calc(-145px*5))' },
         },
       },
       animation: {
