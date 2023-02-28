@@ -1,7 +1,8 @@
 import { RadioGroup } from '@headlessui/react';
-import clsx from 'clsx';
 import { BigNumber } from 'ethers';
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
+
+import clsxm from '@/lib/clsxm';
 
 type Props = {
   value?: string | number | BigNumber;
@@ -24,11 +25,11 @@ const RadioOption = ({
         disabled={showAnswers}
         value={value}
         className={({ checked }) =>
-          clsx(
-            correctAnswer && showAnswers && 'bg-[#17FF16]',
-            showAnswers && checked && !correctAnswer && 'bg-red-500',
+          clsxm(
             'bg-white text-lg font-bold text-black',
-            'w-full cursor-pointer rounded-full p-4 text-left shadow-md focus:outline-none'
+            'w-full cursor-pointer rounded-full p-4 text-left shadow-md focus:outline-none',
+            correctAnswer && showAnswers && 'bg-[#17FF16]',
+            showAnswers && checked && !correctAnswer && 'bg-red-500'
           )
         }
       >

@@ -33,7 +33,7 @@ const Questions = () => {
       countdown.current?.stop();
       setTimeout(() => {
         handleNextQuestion();
-      }, 500);
+      }, 850);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showAnswers]);
@@ -52,7 +52,7 @@ const Questions = () => {
         <span className='w-full'>
           <PercentageBar
             percentage={70}
-            name={`Question ${questionNumber} of ${questions.length}`}
+            name={`Question ${questionNumber} of ${questions?.length}`}
           />
         </span>
       </div>
@@ -89,7 +89,6 @@ const Questions = () => {
         name='options'
         className='mt-8 space-y-4'
         disabled={showAnswers}
-        value={countdown.current?.isCompleted() && undefined}
       >
         {questions[questionNumber].options.map((option: string) => {
           return (
