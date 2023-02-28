@@ -1,10 +1,12 @@
+import { Tab } from '@headlessui/react';
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import Button from '@/components/buttons/Button';
 import Carousel from '@/components/carousel/Carousel';
 import Menu from '@/components/menu/Menu';
 import Profile from '@/components/profiles/Profile';
+import TabGroup from '@/components/tabs/TabGroup';
+import TabPanel from '@/components/tabs/TabPanel';
 
 import LeaderBoard from '@/features/Game/components/leader-board/LeaderBoard';
 import Payment from '@/features/Game/components/payment/Payment';
@@ -85,76 +87,85 @@ const Game = () => {
             />
           </div>
 
-          <div className='flex flex-col gap-4 mobile-m:flex-row'>
+          <Tab.List className='flex flex-col items-center gap-4 mobile-m:flex-row'>
             {categories.map((category, index) => {
               return (
-                <Button
-                  variant='outline'
-                  size='base'
+                <Tab
                   key={index}
-                  className='flex items-center justify-center'
+                  className='flex w-full justify-center rounded-full border-2 border-primary-500 p-2 hover:bg-green-600 active:bg-green-500'
                 >
-                  <div>{category.image}</div>
-                </Button>
+                  {category.image}
+                </Tab>
               );
             })}
-          </div>
-
-          <div>
-            <h2>Trending Quiz Bets</h2>
-            <Carousel
-              indicators={false}
-              className='left-2/4 w-screen -translate-x-2/4 items-center justify-center child:gap-2'
-            >
-              {Object.keys(trendingQuizzes).map((quizIdentifier, index) => {
-                return (
-                  <QuizCard
-                    key={index}
-                    players={trendingQuizzes[quizIdentifier].players}
-                    entryPrice={trendingQuizzes[quizIdentifier].entryPrice}
-                    title={trendingQuizzes[quizIdentifier].title}
-                    image={trendingQuizzes[quizIdentifier].image}
-                    onClick={() => handleTrendingQuizClick(quizIdentifier)}
-                  />
-                );
-              })}
-            </Carousel>
-          </div>
-          <div>
-            <h2>By Tier Quiz Bets</h2>
-            <Carousel
-              indicators={false}
-              className='left-2/4 w-screen -translate-x-2/4 items-center justify-center child:gap-2'
-            >
-              {Object.keys(tierQuizzes).map((quizIdentifier, index) => {
-                return (
-                  <QuizCard
-                    key={index}
-                    players={tierQuizzes[quizIdentifier].players}
-                    entryPrice={tierQuizzes[quizIdentifier].entryPrice}
-                    title={tierQuizzes[quizIdentifier].title}
-                    type={tierQuizzes[quizIdentifier].type}
-                    image={tierQuizzes[quizIdentifier].image}
-                    onClick={() => handleTierQuizClick(quizIdentifier)}
-                  />
-                );
-              })}
-            </Carousel>
-          </div>
-
-          <div>
-            <div className='flex items-center justify-between gap-3'>
-              <h2>Friends</h2>
-              <span
-                onClick={() => setShowInviteFriends(true)}
-                className='text-gradient-primary text-sm font-bold'
+          </Tab.List>
+          <TabPanel className='space-y-9'>
+            <div>
+              <h2>Trending Quiz Bets</h2>
+              <Carousel
+                indicators={false}
+                className='left-2/4 w-screen -translate-x-2/4 items-center justify-center child:gap-2'
               >
-                + Invite Friends
-              </span>
+                {Object.keys(trendingQuizzes).map((quizIdentifier, index) => {
+                  return (
+                    <QuizCard
+                      key={index}
+                      players={trendingQuizzes[quizIdentifier].players}
+                      entryPrice={trendingQuizzes[quizIdentifier].entryPrice}
+                      title={trendingQuizzes[quizIdentifier].title}
+                      image={trendingQuizzes[quizIdentifier].image}
+                      onClick={() => handleTrendingQuizClick(quizIdentifier)}
+                    />
+                  );
+                })}
+              </Carousel>
             </div>
-            <PlayersInfiniteScroll players={players} className='mt-6' />
-          </div>
+            <div>
+              <h2>By Tier Quiz Bets</h2>
+              <Carousel
+                indicators={false}
+                className='left-2/4 w-screen -translate-x-2/4 items-center justify-center child:gap-2'
+              >
+                {Object.keys(tierQuizzes).map((quizIdentifier, index) => {
+                  return (
+                    <QuizCard
+                      key={index}
+                      players={tierQuizzes[quizIdentifier].players}
+                      entryPrice={tierQuizzes[quizIdentifier].entryPrice}
+                      title={tierQuizzes[quizIdentifier].title}
+                      type={tierQuizzes[quizIdentifier].type}
+                      image={tierQuizzes[quizIdentifier].image}
+                      onClick={() => handleTierQuizClick(quizIdentifier)}
+                    />
+                  );
+                })}
+              </Carousel>
+            </div>
+
+            <div>
+              <div className='flex items-center justify-between gap-3'>
+                <h2>Friends</h2>
+                <span
+                  onClick={() => setShowInviteFriends(true)}
+                  className='text-gradient-primary text-sm font-bold'
+                >
+                  + Invite Friends
+                </span>
+              </div>
+              <PlayersInfiniteScroll players={players} className='mt-6' />
+            </div>
+          </TabPanel>
+          <TabPanel className='mt-6 flex justify-center'>
+            <span className='h2'>Coming Soon</span>
+          </TabPanel>
+          <TabPanel className='mt-6 flex justify-center'>
+            <span className='h2'>Coming Soon</span>
+          </TabPanel>
+          <TabPanel className='justly-center mt-6 flex'>
+            <span className='h2'>Coming Soon</span>
+          </TabPanel>
         </section>
+
         {createPortal(<Menu />, document.body)}
       </>
     );
@@ -183,7 +194,7 @@ const Game = () => {
     return <></>;
   };
 
-  return renderGame();
+  return <TabGroup>{renderGame()}</TabGroup>;
 };
 
 export default Game;
