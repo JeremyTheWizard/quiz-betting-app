@@ -10,7 +10,7 @@ import NFTThumbnail from '@/features/Game/components/Quiz/NFTThumbnail';
 import { useQuizContext } from '@/features/Game/contexts/QuizContext';
 
 const PostQuestions = () => {
-  const { NFTInfo, reset } = useQuizContext();
+  const { preQuestions, reset } = useQuizContext();
 
   const handleQuizDone = () => {
     reset();
@@ -29,7 +29,7 @@ const PostQuestions = () => {
         <span className='font-secondary'>You Get +2019 Quiz Points</span>
       </div>
 
-      <NFTThumbnail className='mt-6' NFTFlowId={NFTInfo.NFTId} />
+      <NFTThumbnail className='mt-6' NFTFlowId={preQuestions.NFTFlowId} />
       <div className='relative -top-9 mx-auto flex w-3/5 items-center justify-center'>
         <div className='text-gradient-primary mb-4 flex items-center gap-1'>
           <span className='text-3xl text-primary-500'>
