@@ -2,15 +2,15 @@ import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { CiMedal } from 'react-icons/ci';
 
+import Account from '@/components/account/Account';
 import Button from '@/components/buttons/Button';
-import Profile from '@/components/profiles/Profile';
 
 import LeaderBoardTable from '@/features/Game/components/Quiz/leader-board-table/LeaderBoardTable';
 import NFTThumbnail from '@/features/Game/components/Quiz/NFTThumbnail';
 import { useQuizContext } from '@/features/Game/contexts/QuizContext';
 
 const PostQuestions = () => {
-  const { reset } = useQuizContext();
+  const { NFTInfo, reset } = useQuizContext();
 
   const handleQuizDone = () => {
     reset();
@@ -29,7 +29,7 @@ const PostQuestions = () => {
         <span className='font-secondary'>You Get +2019 Quiz Points</span>
       </div>
 
-      <NFTThumbnail className='mt-6' />
+      <NFTThumbnail className='mt-6' NFTFlowId={NFTInfo.NFTId} />
       <div className='relative -top-9 mx-auto flex w-3/5 items-center justify-center'>
         <div className='text-gradient-primary mb-4 flex items-center gap-1'>
           <span className='text-3xl text-primary-500'>
@@ -40,7 +40,7 @@ const PostQuestions = () => {
       </div>
 
       <>
-        <Profile />
+        <Account />
         <LeaderBoardTable className='mt-6' />
       </>
 
