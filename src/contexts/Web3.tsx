@@ -206,7 +206,11 @@ export const Web3ContextProvider = ({
 
   const magicConnect = useCallback(
     async (configuration: LoginWithMagicLinkConfiguration) => {
-      await magic.current?.auth.loginWithMagicLink(configuration);
+      const email = configuration.email;
+      await magic.current?.auth.loginWithMagicLink({
+        email,
+        showUI: false,
+      });
       setMagicIsLoggedIn(true);
     },
     []
