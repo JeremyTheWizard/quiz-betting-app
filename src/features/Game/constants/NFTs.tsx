@@ -1,18 +1,12 @@
-import { NFTThumbnailInfo } from '../types/Types';
 // TODO: autotomize the acquisitions of NFTs from the blockchain
 
 export const NFTMedia = (momentFlowID: string, mediaType: string) => {
   return `https://assets.nbatopshot.com/media/${momentFlowID}/${mediaType}`;
 };
 
-export const NFTs: { [key: string]: NFTThumbnailInfo[] } = {
-  'Lebron James': [
-    {
-      NFTName: 'Lebron James',
-      NFTId: '673595',
-      NFTDescription:
-        'Dunk · Oct 31 2021 Metallic Silver FE (Series 3) Fandom/901',
-      NFTTotalPrice: '2.25',
-    },
-  ],
+export const NFTs: { [key: string]: string[] } = {
+  'Lebron James': ['673595', '114023', '496849', '27148369', '974488'],
+  'Giannis Antetokounmpo': ['31907', '10077829', '16480089'],
+  Magic: ['37143971', '36687031', '36686122', '36686551'],
+  'Kevin Durant': ['16218736', '826636', '35786010', '14680265'],
 };

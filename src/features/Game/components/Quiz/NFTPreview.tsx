@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
+
+import { thousandSeparator } from '@/lib/thousandSeparator';
 
 import Button from '@/components/buttons/Button';
 import SlideUp from '@/components/modals/SlideUp';
@@ -14,8 +16,15 @@ type Props = {
 };
 
 const NFTPreview = ({ setShowNFTPreview }: Props) => {
-  const { preQuestions, setActiveStep } = useQuizContext();
+  const { preQuestions, setActiveStep, NFTInfo } = useQuizContext();
   const [showInfo, setShowInfo] = useState(false);
+
+  //#region  //*=========== video state ===========
+  const videoRef: React.MutableRefObject<HTMLVideoElement | null> =
+    useRef(null);
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  //#endregion  //*======== video state ===========
 
   const handleBetClick = () => {
     setActiveStep('questions');
@@ -26,29 +35,37 @@ const NFTPreview = ({ setShowNFTPreview }: Props) => {
     <>
       <div className='absolute left-2/4 top-0 h-full max-h-screen w-full -translate-x-2/4 overflow-hidden'>
         <video
+          ref={videoRef}
           onClick={() => setShowInfo(true)}
           className='h-full w-full scale-110 object-cover'
-          src={NFTMedia(preQuestions.NFTInfo.NFTId, 'video-tall')}
+          src={NFTMedia(preQuestions.NFTFlowId, 'video-tall')}
           autoPlay
           loop
           muted
+          onLoadedMetadata={(e: React.SyntheticEvent<HTMLVideoElement>) => {
+            setDuration(e.currentTarget.duration);
+          }}
+          onTimeUpdate={(e: React.SyntheticEvent<HTMLVideoElement>) => {
+            setCurrentTime(e.currentTarget.currentTime);
+          }}
         />
       </div>
-      <PercentageBar percentage={80} />
+      <PercentageBar percentage={(currentTime / duration) * 100} />
       <div className='z-40 mt-6 flex w-full items-center justify-between'>
         <div className='flex w-full items-center gap-2'>
           <div className='rounded-full bg-gradient-primary'>
             <NextImage
-              src='/images/image-placeholder.png'
+              src='/images/prem.png'
               alt=''
               fill
               className='relative h-8 w-8 rounded-full'
-              imgClassName='object-cover object-center rounded-full'
+              imgClassName='object-contain object-center rounded-full p-1'
             />
           </div>
-          <span className='text-se block text-base'>
-            {preQuestions.NFTInfo.NFTName}
-          </span>
+          <div>
+            <span className='text-se block text-base'>{NFTInfo.NFTName}</span>
+            <span className='text-xs'>Serial: {NFTInfo.version}</span>
+          </div>
         </div>
         <span className='text-2xl' onClick={() => setShowNFTPreview(false)}>
           <AiOutlineClose />
@@ -60,7 +77,13 @@ const NFTPreview = ({ setShowNFTPreview }: Props) => {
             <div className='flex w-full items-center justify-between'>
               <div className='flex items-center gap-1'>
                 <span className='text-3xl font-bold'>
-                  {preQuestions.NFTInfo.NFTTotalPrice}
+                  {NFTInfo
+                    ? NFTInfo.NFTTotalPrice
+                      ? thousandSeparator(
+                          (+NFTInfo?.NFTTotalPrice.split('.')[0]).toString()
+                        )
+                      : "Can't calculate"
+                    : 'Loading...'}
                 </span>
                 <div className='text-[10px]'>
                   <span className='block'>FLOW</span>
@@ -74,20 +97,23 @@ const NFTPreview = ({ setShowNFTPreview }: Props) => {
             </div>
             <div className='flex justify-between gap-1'>
               <span className='w-min text-3xl font-bold'>
-                {preQuestions.NFTInfo.NFTName}
+                {NFTInfo.NFTName}
               </span>
               <div className='my-auto flex h-10 w-24 flex-col items-center justify-center rounded-full bg-black px-3 py-1 text-2xs text-white'>
                 <span className='block text-center'>42 FOR SALE</span>
               </div>
             </div>
-            <div className='flex items-center justify-between gap-4'>
-              <p className='text-2xs'>{preQuestions.NFTInfo.NFTDescription}</p>
-              <div className='flex w-full items-center rounded-full bg-gradient-primary py-1.5 px-2.5 text-black'>
-                <div className='flex justify-center gap-1'>
-                  <span className='h3 whitespace-nowrap'>
-                    MIN BET ${preQuestions.requiredBet}
-                  </span>
-                  <span className='text-2xs'>FLOW</span>
+            <div className='grid grid-cols-2 items-center justify-between gap-4 '>
+              <p className='text-2xs'>{NFTInfo.NFTDescription}</p>
+              <div className='w-full items-center rounded-full bg-gradient-primary py-1.5 px-2.5 text-black'>
+                <div className='col-span-3 flex w-full flex-col justify-center'>
+                  <span className='mx-auto text-sm'>Max Bet:</span>
+                  <div className='mx-auto flex items-center'>
+                    <span className='h3 whitespace-nowrap'>
+                      {NFTInfo.maxBet}
+                    </span>
+                    <span className='text-2xs'>FLOW</span>
+                  </div>
                 </div>
               </div>
             </div>

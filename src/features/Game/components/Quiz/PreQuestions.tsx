@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useCallback, useEffect, useState } from 'react';
 import { BsArrowLeft } from 'react-icons/bs';
 import { CiMedal } from 'react-icons/ci';
 import { HiOutlineUserGroup } from 'react-icons/hi';
@@ -12,9 +13,43 @@ import PlayersInfiniteScroll from '@/features/Game/components/Quiz/PlayersInfini
 import { useQuizContext } from '@/features/Game/contexts/QuizContext';
 
 const PreQuestions = () => {
-  const { setActiveQuiz, preQuestions, setActiveStep } = useQuizContext();
+  const { reset, preQuestions, setActiveStep, NFTInfo, setNFTInfo } =
+    useQuizContext();
   const [showNFTPreview, setShowNFTPreview] = useState(false);
   const [showInviteFriends, setShowInviteFriends] = useState(false);
+
+  const getNFTFlowIdInfo = useCallback(async () => {
+    try {
+      const data = await axios
+        .get('/api/grapql/minted-moment', {
+          params: { flowid: preQuestions.NFTFlowId },
+        })
+        .then((res) => res.data.data);
+
+      const NFTTotalPrice = data.getMintedMoment.data.price;
+
+      setNFTInfo({
+        NFTId: data.getMintedMoment.data.play.id,
+        NFTName: data.getMintedMoment.data.play.headline,
+        NFTDescription: data.getMintedMoment.data.play.shortDescription,
+        NFTTotalPrice: NFTTotalPrice,
+        maxBet: NFTTotalPrice
+          ? (
+              +NFTTotalPrice.split('.')[0] / preQuestions.players.length
+            ).toString()
+          : '',
+        NFTVideoSrc: undefined,
+        version: data.getMintedMoment.data.play.version,
+      });
+    } catch (e) {
+      return e;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preQuestions.NFTFlowId, preQuestions.players.length, setNFTInfo]);
+
+  useEffect(() => {
+    getNFTFlowIdInfo();
+  }, [getNFTFlowIdInfo]);
 
   const summary = () => {
     return (
@@ -22,7 +57,7 @@ const PreQuestions = () => {
         <div className='flex justify-between gap-2'>
           <div className='flex items-center gap-4'>
             <span
-              onClick={() => setActiveQuiz(false)}
+              onClick={() => reset()}
               className='cursor-pointer text-2xl text-white'
             >
               <BsArrowLeft />
@@ -38,25 +73,23 @@ const PreQuestions = () => {
             <span className='font-secondary text-lg'>REWARD</span>
           </div>
           <NFTThumbnail
-            NFTFlowId={preQuestions.NFTInfo.NFTId}
+            NFTFlowId={preQuestions.NFTFlowId}
             onClick={() => setShowNFTPreview(true)}
+            showPrice={true}
           />
-          <div className='relative -top-14 flex w-3/5 items-center justify-center rounded-3xl bg-white py-5'>
-            <div className='flex gap-1 text-black'>
-              <span className='h1 my-auto w-full text-center'>
-                ${preQuestions.NFTInfo.NFTTotalPrice}
-              </span>
-              <div className='my-auto w-full text-[10px]'>
-                <span className='block'>FLOW</span>
-                <span>Avg Sale</span>
-              </div>
-            </div>
-          </div>
           <div className='relative -top-8 w-full'>
             <div className='h3 rounded-full bg-gradient-primary p-2.5 text-black'>
               <div className='flex justify-center gap-1'>
-                <span>MIN BET ${preQuestions.requiredBet}</span>
-                <span className='text-[10px]'>FLOW</span>
+                <span>
+                  MAX BET $
+                  {NFTInfo
+                    ? NFTInfo.NFTTotalPrice
+                      ? +NFTInfo?.NFTTotalPrice.split('.')[0] /
+                        preQuestions.players.length
+                      : "Can't calculate"
+                    : 'Loading...'}
+                </span>
+                <span className='text-[10px]'>{NFTInfo && 'FLOW'}</span>
               </div>
             </div>
 
@@ -84,7 +117,7 @@ const PreQuestions = () => {
               onClick={() => setActiveStep('questions')}
               variant='outline'
               size='lg'
-              className='mt-2 py-4'
+              className='mt-8 py-4'
             >
               Place Bet
             </Button>

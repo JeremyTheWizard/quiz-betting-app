@@ -70,8 +70,8 @@ export const tierQuizzes: {
   },
 
   '#9832': {
-    title: 'Kevin Duran',
-    category: { player: { name: 'Kevin Duran' } },
+    title: 'Kevin Durant',
+    category: { player: { name: 'Kevin Durant' } },
     type: 'rare',
     players: '5',
     entryPrice: '35.3',

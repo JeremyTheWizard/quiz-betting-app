@@ -10,16 +10,18 @@ import NFTThumbnail from '@/features/Game/components/Quiz/NFTThumbnail';
 import { useQuizContext } from '@/features/Game/contexts/QuizContext';
 
 const PostQuestions = () => {
-  const { setActiveQuiz, setActiveStep } = useQuizContext();
+  const { reset } = useQuizContext();
 
   const handleQuizDone = () => {
-    setActiveQuiz(false);
-    setActiveStep('pre-questions');
+    reset();
   };
 
   return (
     <div className='relative flex flex-col'>
-      <span className='absolute top-0 right-0 text-3xl'>
+      <span
+        className='absolute top-0 right-0 text-3xl'
+        onClick={() => handleQuizDone()}
+      >
         <AiOutlineClose />
       </span>
       <div className='text-gradient-primary flex w-full flex-col items-center gap-1'>
