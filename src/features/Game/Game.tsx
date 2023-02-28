@@ -54,6 +54,26 @@ const Game = () => {
     );
   };
 
+  const handleTierQuizClick = (quizIdentifier: string) => {
+    setActiveQuiz(true);
+    setActiveQuizStep('pre-questions');
+
+    const category = tierQuizzes[quizIdentifier].category;
+    const NFTInfo =
+      NFTs[category.player?.name || category.team?.name || 'Lebron James'];
+
+    setPreQuestions({
+      NFTFlowId: NFTInfo[Math.floor(Math.random() * NFTInfo?.length ?? 0)],
+      players: players,
+      requiredBet: tierQuizzes[quizIdentifier].entryPrice,
+      categoryImage: tierQuizzes[quizIdentifier].image,
+    });
+
+    setQuestions(
+      questions[category.player?.name || category.team?.name || 'Lebron James']
+    );
+  };
+
   const home = () => {
     return (
       <>
@@ -115,6 +135,7 @@ const Game = () => {
                     title={tierQuizzes[quizIdentifier].title}
                     type={tierQuizzes[quizIdentifier].type}
                     image={tierQuizzes[quizIdentifier].image}
+                    onClick={() => handleTierQuizClick(quizIdentifier)}
                   />
                 );
               })}
