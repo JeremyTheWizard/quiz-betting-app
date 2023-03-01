@@ -1,8 +1,6 @@
 import { useRef, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 
-import { thousandSeparator } from '@/lib/thousandSeparator';
-
 import Button from '@/components/buttons/Button';
 import SlideUp from '@/components/modals/SlideUp';
 import NextImage from '@/components/NextImage';
@@ -35,6 +33,8 @@ const NFTPreview = ({ setShowNFTPreview }: Props) => {
     <>
       <div className='absolute left-2/4 top-0 h-full max-h-screen w-full -translate-x-2/4 overflow-hidden mobile-demo:max-h-[844px] mobile-demo:w-[500px]'>
         <video
+          webkit-playsinline={true}
+          playsInline
           ref={videoRef}
           onClick={() => setShowInfo(true)}
           className='h-full w-full scale-110 object-cover'
@@ -79,9 +79,9 @@ const NFTPreview = ({ setShowNFTPreview }: Props) => {
                 <span className='text-3xl font-bold'>
                   {NFTInfo
                     ? NFTInfo.NFTTotalPrice
-                      ? thousandSeparator(
-                          (+NFTInfo?.NFTTotalPrice.split('.')[0]).toString()
-                        )
+                      ? parseInt(
+                          NFTInfo?.NFTTotalPrice.split('.')[0]
+                        ).toLocaleString()
                       : "Can't calculate"
                     : 'Loading...'}
                 </span>
