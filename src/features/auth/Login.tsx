@@ -19,7 +19,7 @@ export default function Login({ setSelectedAuth }: Props) {
 
   const { magicConnect } = useWeb3Context();
 
-  const [showDialog, setShowDialog] = useState(true);
+  const [showDialog, setShowDialog] = useState(false);
 
   const handleSignIn = (
     e: React.FormEvent<HTMLFormElement> & { target: { value: string } }
