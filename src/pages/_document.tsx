@@ -16,7 +16,7 @@ export default function Document() {
           rel='stylesheet'
         />
       </Head>
-      <body className='mx-auto h-full w-full bg-dark mobile-l:max-w-[500px]'>
+      <body className='mx-auto h-full w-full bg-dark mobile-demo:max-w-[500px]'>
         <Main />
         <NextScript />
       </body>

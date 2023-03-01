@@ -10,6 +10,7 @@ module.exports = {
         'mobile-s': '320px',
         'mobile-m': '375px',
         'mobile-l': '425px',
+        'mobile-demo': '475px',
       },
 
       fontSize: {

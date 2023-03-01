@@ -61,7 +61,7 @@ const NFTPreview = ({ NFTFlowId, setShowNFTPreview }: Props) => {
 
   return (
     <>
-      <div className='absolute left-2/4 top-0 h-full max-h-screen w-full -translate-x-2/4 overflow-hidden mobile-l:max-w-[500px]'>
+      <div className='absolute left-2/4 top-0 h-full max-h-screen w-full -translate-x-2/4 overflow-hidden mobile-demo:max-w-[500px]'>
         <video
           ref={videoRef}
           onClick={() => setShowInfo(true)}

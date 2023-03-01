@@ -42,7 +42,7 @@ const PaymentTypes = () => {
     <TabGroup>
       <Tab.List>
         <Carousel
-          className='left-[50%] w-screen -translate-x-2/4 mobile-l:w-[500px]'
+          className='left-[50%] w-screen -translate-x-2/4 mobile-demo:w-[500px]'
           itemWrapperClassName='w-max'
           scrollContainerClassName='snap-none pl-[25px]'
           slide={false}

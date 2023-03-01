@@ -31,11 +31,11 @@ const QuizCard = ({
     <div
       {...rest}
       className={clsxm(
-        'relative left-2/4 mx-auto flex h-[200px] w-screen -translate-x-2/4 items-end overflow-hidden bg-transparent mobile-m:h-[230px] mobile-l:w-[500px]',
+        'relative left-2/4 mx-auto flex h-[200px] w-screen -translate-x-2/4 items-end overflow-hidden bg-transparent mobile-m:h-[230px] mobile-demo:w-[500px]',
         className
       )}
     >
-      <div className='mx-auto flex h-[172px] w-full max-w-[85vw] rounded-xl bg-gradient-primary p-4 mobile-m:h-[200px] mobile-l:max-w-[425px]'>
+      <div className='mx-auto flex h-[172px] w-full max-w-[85vw] rounded-xl bg-gradient-primary p-4 mobile-m:h-[200px] mobile-demo:max-w-[425px]'>
         <QuizCardBG
           className='absolute left-0 top-0'
           width='285px'

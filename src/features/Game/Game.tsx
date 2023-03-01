@@ -79,7 +79,7 @@ const Game = () => {
   const home = () => {
     return (
       <>
-        <section className='mb-3 max-w-[95vw] space-y-9 mobile-l:w-[450px]'>
+        <section className='mb-3 max-w-[95vw] space-y-9 mobile-demo:w-[450px]'>
           <div className='flex gap-4'>
             <TextField
               startAdornment='search'
@@ -104,7 +104,7 @@ const Game = () => {
               <h2>Trending Quiz Bets</h2>
               <Carousel
                 indicators={false}
-                className='left-2/4 w-screen -translate-x-2/4 items-center justify-center child:gap-2 mobile-l:w-[500px]'
+                className='left-2/4 w-screen -translate-x-2/4 items-center justify-center child:gap-2 mobile-demo:w-[500px]'
               >
                 {Object.keys(trendingQuizzes).map((quizIdentifier, index) => {
                   return (
@@ -124,7 +124,7 @@ const Game = () => {
               <h2>By Tier Quiz Bets</h2>
               <Carousel
                 indicators={false}
-                className='left-2/4 w-screen -translate-x-2/4 items-center justify-center child:gap-2 mobile-l:w-[500px]'
+                className='left-2/4 w-screen -translate-x-2/4 items-center justify-center child:gap-2 mobile-demo:w-[500px]'
               >
                 {Object.keys(tierQuizzes).map((quizIdentifier, index) => {
                   return (

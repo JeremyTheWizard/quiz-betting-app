@@ -5,7 +5,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
       id='layout'
-      className='min-w-screen min-h-screen overflow-x-hidden mobile-l:min-w-full'
+      className='min-w-screen min-h-screen overflow-x-hidden mobile-demo:min-w-full'
     >
       {children}
     </div>

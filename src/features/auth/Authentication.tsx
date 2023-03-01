@@ -75,13 +75,13 @@ const Authentication = () => {
         <section className='flex flex-col items-center '>
           <OnDarkLogo />
           <Carousel
-            className='w-screen mobile-l:w-[500px]'
+            className='w-screen mobile-demo:w-[500px]'
             slideInterval={3000}
           >
             {slides.map((slide, index) => (
               <div key={index}>
                 {slide.image}
-                <p className='mx-auto max-w-[95vw] text-center text-lg mobile-l:max-w-[475px]'>
+                <p className='mx-auto max-w-[95vw] text-center text-lg mobile-demo:max-w-[475px]'>
                   {slide.description}
                 </p>
               </div>
@@ -111,7 +111,9 @@ const Authentication = () => {
   };
 
   return (
-    <div className='flex w-full flex-col px-0'>{renderAuthentication()}</div>
+    <div className='flex h-full w-full flex-col px-0'>
+      {renderAuthentication()}
+    </div>
   );
 };
 

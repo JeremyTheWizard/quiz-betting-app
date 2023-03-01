@@ -7,7 +7,7 @@ import NextImage from '@/components/NextImage';
 const Profile = () => {
   return (
     <>
-      <div className='absolute mt-6 flex flex-col items-center gap-3 mobile-l:inset-center'>
+      <div className='absolute mt-6 flex flex-col items-center gap-3 mobile-demo:inset-center'>
         <NextImage
           src='/images/demo-profile.png'
           alt='Image placeholder'
