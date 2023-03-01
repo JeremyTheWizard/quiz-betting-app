@@ -33,10 +33,10 @@ export default function Login({ setSelectedAuth }: Props) {
             src='/images/ufc.png'
             alt='loading app'
             fill
-            className='absolute left-2/4 top-0 h-full w-screen -translate-x-1/2'
+            className='absolute left-2/4 top-0 h-full w-screen -translate-x-1/2 mobile-l:w-[500px]'
             imgClassName='object-cover object-left-top opacity-50'
           />
-          <div className='min-w-screen absolute flex h-full w-full max-w-[90vw] flex-col items-center inset-center'>
+          <div className='mobile-l:min-w-auto min-w-screen absolute flex h-full w-full max-w-[90vw] flex-col items-center inset-center mobile-l:w-[450px]'>
             <div className='absolute flex h-full w-full flex-col items-center pt-24'>
               <div className='flex h-full w-full flex-col items-center justify-center'>
                 <span className='h2 text-center text-xl font-normal text-primary-500'>

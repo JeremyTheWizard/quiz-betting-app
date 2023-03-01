@@ -7,7 +7,7 @@ import NextImage from '@/components/NextImage';
 const Profile = () => {
   return (
     <>
-      <div className='mt-6 flex flex-col items-center gap-3'>
+      <div className='absolute mt-6 flex flex-col items-center gap-3 mobile-l:inset-center'>
         <NextImage
           src='/images/demo-profile.png'
           alt='Image placeholder'
@@ -17,7 +17,7 @@ const Profile = () => {
         />
         <span className='block'>IamjackRider</span>
         <span className='text-gradient-primary block'>3950 pts.</span>
-        <span className='h1 text-gradient-primary absolute text-center inset-center'>
+        <span className='h1 text-gradient-primary mt-20 text-center'>
           Under Construction
         </span>
       </div>

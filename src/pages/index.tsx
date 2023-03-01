@@ -57,7 +57,7 @@ export default function HomePage() {
           src='/images/loading-app.gif'
           alt='loading app'
           fill
-          className='absolute left-2/4 top-0 h-full w-screen -translate-x-2/4'
+          className='absolute left-2/4 top-0 h-full w-screen -translate-x-2/4 mobile-l:w-[500px]'
           imgClassName='object-cover object-top'
         />
         <div className='absolute bottom-20 left-2/4 h-48 w-48 -translate-x-2/4'>
@@ -68,7 +68,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className='mx-auto flex max-w-[90vw] flex-col pt-8 pb-10'>
+    <main className='mx-auto flex h-full max-w-[90vw] flex-col pt-8 pb-10 mobile-l:max-w-[450px]'>
       {renderPage()}
     </main>
   );

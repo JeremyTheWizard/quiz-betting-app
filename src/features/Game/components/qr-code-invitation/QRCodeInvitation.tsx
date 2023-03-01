@@ -6,7 +6,7 @@ import NextImage from '@/components/NextImage';
 
 const QRCodeInvitation = () => {
   return (
-    <div className='absolute top-0 left-2/4 h-full max-h-screen w-screen -translate-x-2/4 overflow-hidden'>
+    <div className='absolute top-0 left-2/4 h-full max-h-screen w-screen -translate-x-2/4 overflow-hidden mobile-l:w-[500px]'>
       <NextImage
         src='/images/ufc.png'
         fill
@@ -15,12 +15,12 @@ const QRCodeInvitation = () => {
         alt='ufc strike'
       />
 
-      <div className='absolute top-0 flex h-full w-full max-w-[90vw] flex-col items-center justify-center inset-x-center'>
+      <div className='absolute top-0 flex h-full w-full max-w-[90vw] flex-col items-center justify-center inset-x-center mobile-l:max-w-[450px]'>
         <div className='flex h-full w-full flex-col items-center justify-center'>
           <NextImage
             src='/images/qr-code.png'
             fill
-            className='relative aspect-square w-full max-w-[85vw] inset-x-center'
+            className='relative aspect-square w-full max-w-[85vw] inset-x-center  mobile-l:max-w-[425px]'
             imgClassName='object-cover'
             alt='qr-code'
           />

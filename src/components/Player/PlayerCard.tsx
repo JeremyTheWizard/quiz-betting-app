@@ -20,7 +20,7 @@ const FriendCard = ({ profileImage, handle, points, countryImage }: Player) => {
             {handle}
           </span>
         </div>
-        <div className='mt-auto flex items-end justify-between gap-2'>
+        <div className='mt-auto flex items-center justify-between gap-2'>
           <NextImage
             src={countryImage ?? '/images/image-placeholder.png'}
             className='relative aspect-square h-6 w-6 rounded-full'

@@ -74,11 +74,14 @@ const Authentication = () => {
 
         <section className='flex flex-col items-center '>
           <OnDarkLogo />
-          <Carousel className='w-screen' slideInterval={3000}>
+          <Carousel
+            className='w-screen mobile-l:w-[500px]'
+            slideInterval={3000}
+          >
             {slides.map((slide, index) => (
               <div key={index}>
                 {slide.image}
-                <p className='mx-auto max-w-[95vw] text-center text-lg'>
+                <p className='mx-auto max-w-[95vw] text-center text-lg mobile-l:max-w-[475px]'>
                   {slide.description}
                 </p>
               </div>
