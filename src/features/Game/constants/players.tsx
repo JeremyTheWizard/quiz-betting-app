@@ -2,34 +2,34 @@
 
 export const players = [
   {
-    profileImage: '/images/demo-player.png',
+    profileImage: '/images/profiles/demo-profile-1.png',
     handle: 'Jaden Chandler',
-    points: 0,
+    points: 3821,
     country: 'United States',
   },
 
   {
-    profileImage: '/images/demo-player.png',
+    profileImage: '/images/profiles/demo-profile-2.png',
     handle: 'Zaria Kennedy',
-    points: 0,
+    points: 2322,
     country: 'Mexico',
   },
   {
-    profileImage: '/images/demo-player.png',
+    profileImage: '/images/profiles/demo-profile-3.png',
     handle: 'Sawyer Bowers',
-    points: 0,
+    points: 2281,
     country: 'Argentina',
   },
   {
-    profileImage: '/images/demo-player.png',
+    profileImage: '/images/profiles/demo-profile-4.png',
     handle: 'Maeve Blackwell',
-    points: 0,
+    points: 1281,
     country: 'England',
   },
   {
-    profileImage: '/images/demo-player.png',
+    profileImage: '/images/profiles/demo-profile-5.png',
     handle: 'Marley Tyson',
-    points: 0,
+    points: 1121,
     country: 'Canada',
   },
 ];

@@ -78,7 +78,7 @@ const PreQuestions = () => {
             showPrice={true}
           />
           <div className='relative -top-8 w-full'>
-            <div className='h3 rounded-full bg-gradient-primary p-2.5 text-black'>
+            <div className='h3 mx-auto w-9/12 rounded-full bg-gradient-primary py-3 px-2.5 text-black'>
               <div className='flex justify-center gap-1'>
                 <span>
                   MAX BET $

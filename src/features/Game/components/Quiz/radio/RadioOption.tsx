@@ -35,7 +35,7 @@ const RadioOption = ({
       >
         {({ checked }) => (
           <div className='relative flex items-center justify-between'>
-            <div className=''>{children}</div>
+            <div className='text-base'>{children}</div>
             {correctAnswer && showAnswers && (
               <div className='absolute right-4 shrink-0 text-4xl text-white'>
                 <AiOutlineCheck />
