@@ -52,16 +52,33 @@ export const tierQuizzes: {
     image: JSX.Element;
   };
 } = {
-  '#3298': {
-    title: 'Magic',
-    category: { player: { name: 'Magic' } },
+  // '#3298': {
+  //   title: 'Magic',
+  //   category: { player: { name: 'Magic' } },
+  //   type: 'legendary',
+  //   players: '20',
+  //   entryPrice: '20.05',
+  //   image: (
+  //     <NextImage
+  //       src='/images/magic.png'
+  //       alt='Magic'
+  //       fill
+  //       className='!top-2 h-full w-[290px]'
+  //       imgClassName='object-contain'
+  //     />
+  //   ),
+  // },
+
+  '#3429': {
+    title: 'Devin Booker',
+    category: { player: { name: 'Devin Booker' } },
     type: 'legendary',
     players: '20',
     entryPrice: '20.05',
     image: (
       <NextImage
-        src='/images/magic.png'
-        alt='Magic'
+        src='/images/devin-booker.png'
+        alt='Devin Booker'
         fill
         className='!top-2 h-full w-[290px]'
         imgClassName='object-contain'

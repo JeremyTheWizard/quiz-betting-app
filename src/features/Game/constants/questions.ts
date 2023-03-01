@@ -474,4 +474,172 @@ export const questions: {
       answer: 'Thirty Five Ventures',
     },
   ],
+
+  'Devin Booker': [
+    {
+      question: "What is Devin Booker's current team?",
+      options: [
+        'Utah Jazz',
+        'San Antonio Spurs',
+        'Phoenix Suns',
+        'Los Angeles Lakers',
+      ],
+      answer: 'Phoenix Suns',
+    },
+
+    {
+      question: 'What year did Devin Booker get drafted?',
+      options: ['2013', '2014', '2015', '2016'],
+      answer: '2015',
+    },
+
+    {
+      question: 'What position does Devin Booker play?',
+      options: [
+        'Small Forward',
+        'Shooting Guard',
+        'Power Forward',
+        'Point Guard',
+      ],
+      answer: 'Shooting Guard',
+    },
+
+    {
+      question: 'What college did Devin Booker attend?',
+      options: ['Kentucky', 'Duke', 'Kansas', 'Michigan State'],
+      answer: 'Kentucky',
+    },
+
+    {
+      question:
+        'At what age did Devin Booker become the youngest player to ever score 70 points in a single NBA game?',
+      options: ['19', '20', '21', '22'],
+      answer: '20',
+    },
+
+    {
+      question:
+        "What was Devin Booker's scoring average during the 2018-2019 NBA season?",
+      options: ['14.5', '24.5', '34.5', '44.5'],
+      answer: '24.5',
+    },
+
+    {
+      question: 'How tall is Devin Booker?',
+      options: ["6'1", "6'2", "6'3", "6'4"],
+      answer: "6'6",
+    },
+
+    {
+      question:
+        'What team did Devin Booker play with during the 2016-2017 NBA season?',
+      options: [
+        'Houston Rockets',
+        'Phoenix Suns',
+        'Oklahoma City Thunder',
+        'San Antonio Spurs',
+      ],
+      answer: 'Phoenix Suns',
+    },
+
+    {
+      question: "What is the name of Devin Booker's older brother?",
+      options: ['Jabari', 'Marcus', 'Dion', 'Trevon'],
+      answer: 'Marcus',
+    },
+
+    {
+      question: 'What did Devin Booker win during the 2015-2016 NBA season?',
+      options: [
+        'MVP',
+        'Rookie of the Year',
+        'Sixth Man of the Year',
+        'Most Improved Player',
+      ],
+      answer: 'Rookie of the Year',
+    },
+
+    {
+      question: "What was the name of Devin Booker's high school team?",
+      options: [
+        'Mesa Mountain View',
+        'Mesa Red Mountain',
+        'Mesa Westwood',
+        'Mesa Desert Ridge',
+      ],
+      answer: 'Mesa Red Mountain',
+    },
+
+    {
+      question: 'How many All-Star games has Devin Booker been selected for?',
+      options: ['1', '2', '3', '4'],
+      answer: '1',
+    },
+
+    {
+      question: "What was the name of Devin Booker's first NBA coach?",
+      options: ['Jeff Hornacek', 'Earl Watson', 'Dave Joerger', 'Steve Kerr'],
+      answer: 'Jeff Hornacek',
+    },
+
+    {
+      question:
+        'What year did Devin Booker sign an extension with the Phoenix Suns?',
+      options: ['2018', '2019', '2020', '2021'],
+      answer: '2018',
+    },
+
+    {
+      question: "What is Devin Booker's jersey number?",
+      options: ['1', '2', '3', '4'],
+      answer: '1',
+    },
+
+    {
+      question: "What is Devin Booker's shoe size?",
+      options: ['9', '10', '11', '12'],
+      answer: '11',
+    },
+
+    {
+      question:
+        "What was Devin Booker's field goal percentage during the 2018-2019 NBA season?",
+      options: ['43%', '53%', '63%', '73%'],
+      answer: '53%',
+    },
+
+    {
+      question: 'What type of car does Devin Booker drive?',
+      options: ['Tesla', 'Chevrolet', 'Ford', 'Dodge'],
+      answer: 'Tesla',
+    },
+
+    {
+      question: 'What is the name of the charity that Devin Booker founded?',
+      options: [
+        "Booker's Buddies",
+        "Booker's Basketball",
+        "Booker's Books",
+        "Booker's Backpacks",
+      ],
+      answer: "Booker's Backpacks",
+    },
+
+    {
+      question: 'What NBA player did Devin Booker idolize growing up?',
+      options: [
+        'Kobe Bryant',
+        'Allen Iverson',
+        'Michael Jordan',
+        'LeBron James',
+      ],
+      answer: 'Kobe Bryant',
+    },
+
+    {
+      question: "What is Devin Booker's zodiac sign?",
+      options: ['Virgo', 'Aquarius', 'Gemini', 'Libra'],
+      answer: 'Aquarius',
+    },
+  ],
 };

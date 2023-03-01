@@ -19,7 +19,7 @@ const Questions = () => {
   const countdown: React.MutableRefObject<CountdownApi | null> = useRef(null);
 
   const handleNextQuestion = () => {
-    if (questionNumber + 1 === questions.length) {
+    if (questionNumber + 1 === questions?.length) {
       setActiveStep('post-questions');
     } else {
       setShowAnswers(false);
