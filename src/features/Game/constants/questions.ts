@@ -160,4 +160,318 @@ export const questions: {
       answer: 'Golden State Warriors',
     },
   ],
+
+  'Giannis Antetokounmpo': [
+    {
+      question: 'Which team does Giannis Antetokounmpo currently play for?',
+      options: [
+        'Los Angeles Lakers',
+        'Cleveland Cavaliers',
+        'Boston Celtics',
+        'Milwaukee Bucks',
+      ],
+      answer: 'Milwaukee Bucks',
+    },
+
+    {
+      question: 'In what year did Giannis win the NBA MVP award?',
+      options: ['2017', '2018', '2019', '2020'],
+      answer: '2019',
+    },
+
+    {
+      question:
+        'What is the highest number of points Giannis has scored in a single game?',
+      options: ['48', '58', '68', '78'],
+      answer: '78',
+    },
+
+    {
+      question: "What is Giannis' nickname?",
+      options: [
+        'The Greek Freak',
+        'The Greek God',
+        'The Greek Giant',
+        'The Greek Warrior',
+      ],
+      answer: 'The Greek Freak',
+    },
+
+    {
+      question: 'Giannis was born in which country?',
+      options: ['Greece', 'Italy', 'Germany', 'Spain'],
+      answer: 'Greece',
+    },
+
+    {
+      question: 'What position does Giannis play?',
+      options: ['Small Forward', 'Power Forward', 'Point Guard', 'Center'],
+      answer: 'Small Forward',
+    },
+
+    {
+      question: 'Which of the following awards has Giannis won?',
+      options: [
+        'NBA MVP',
+        'NBA All-Star MVP',
+        'NBA Defensive Player of the Year',
+        'NBA Most Improved Player',
+      ],
+      answer: 'NBA MVP',
+    },
+
+    {
+      question: 'What year did Giannis first enter the NBA?',
+      options: ['2011', '2012', '2013', '2014'],
+      answer: '2013',
+    },
+
+    {
+      question: 'Which team did Giannis play for before the Milwaukee Bucks?',
+      options: [
+        'Philadelphia 76ers',
+        'Cleveland Cavaliers',
+        'Los Angeles Lakers',
+        'New York Knicks',
+      ],
+      answer: 'Philadelphia 76ers',
+    },
+
+    {
+      question: "What is Giannis' full name?",
+      options: [
+        'Giannis Aris Antetokounmpo',
+        'Giannis Aristides Antetokounmpo',
+        'Giannis Athanasios Antetokounmpo',
+        'Giannis Aristotelis Antetokounmpo',
+      ],
+      answer: 'Giannis Aris Antetokounmpo',
+    },
+
+    {
+      question: 'How many siblings does Giannis have?',
+      options: ['2', '3', '4', '5'],
+      answer: '4',
+    },
+
+    {
+      question: "What is the name of Giannis' wife?",
+      options: [
+        'Mariah Carey',
+        'Mariah Riddlesprigger',
+        'Mariah Smith',
+        'Mariah Antetokounmpo',
+      ],
+      answer: 'Mariah Antetokounmpo',
+    },
+
+    {
+      question: 'What year did Giannis win the NBA All-Star Game MVP award?',
+      options: ['2017', '2018', '2019', '2020'],
+      answer: '2020',
+    },
+
+    {
+      question: 'What college did Giannis attend?',
+      options: [
+        'University of Wisconsin',
+        'University of Michigan',
+        'University of Kentucky',
+        'He did not attend college',
+      ],
+      answer: 'He did not attend college',
+    },
+
+    {
+      question: "What is Giannis' nationality?",
+      options: ['American', 'Greek', 'Italian', 'German'],
+      answer: 'Greek',
+    },
+
+    {
+      question: 'What NBA record did Giannis break in 2019?',
+      options: [
+        'Most triple-doubles in a season',
+        'Most points in a season',
+        'Most rebounds in a season',
+        'Most assists in a season',
+      ],
+      answer: 'Most points in a season',
+    },
+
+    {
+      question: "What is Giannis' jersey number?",
+      options: ['5', '10', '15', '34'],
+      answer: '34',
+    },
+
+    {
+      question:
+        'Giannis is a four-time All-Star. In which year was he first selected?',
+      options: ['2015', '2016', '2017', '2018'],
+      answer: '2016',
+    },
+
+    {
+      question: "What is the name of Giannis' first son?",
+      options: ['Liam', 'Alex', 'Lorenzo', 'Logan'],
+      answer: 'Liam',
+    },
+
+    {
+      question:
+        "Giannis won the NBA's Most Improved Player award in which year?",
+      options: ['2015', '2016', '2017', '2018'],
+      answer: '2017',
+    },
+  ],
+
+  'Kevin Durant': [
+    {
+      question: 'What team does Kevin Durant currently play for?',
+      options: [
+        'Brooklyn Nets',
+        'Oklahoma City Thunder',
+        'Golden State Warriors',
+        'Boston Celtics',
+      ],
+      answer: 'Brooklyn Nets',
+    },
+    {
+      question: "What is Kevin Durant's jersey number?",
+      options: ['3', '7', '35', '25'],
+      answer: '7',
+    },
+    {
+      question: 'What year was Kevin Durant drafted?',
+      options: ['2005', '2006', '2007', '2008'],
+      answer: '2007',
+    },
+    {
+      question: 'What year did Kevin Durant win his first NBA Championship?',
+      options: ['2013', '2014', '2015', '2016'],
+      answer: '2015',
+    },
+    {
+      question: 'Which college did Kevin Durant attend for one season?',
+      options: [
+        'University of Texas',
+        'University of Maryland',
+        'Duke University',
+        'University of Kentucky',
+      ],
+      answer: 'University of Texas',
+    },
+    {
+      question: 'In what year did Kevin Durant win the NBA MVP Award?',
+      options: ['2010', '2011', '2012', '2013'],
+      answer: '2014',
+    },
+    {
+      question: "What is the name of Kevin Durant's production company?",
+      options: [
+        'Thirty Five Ventures',
+        'Fifty Five Ventures',
+        'Thirty Five Media',
+        'Thirty Five Productions',
+      ],
+      answer: 'Thirty Five Ventures',
+    },
+    {
+      question: "What is Kevin Durant's middle name?",
+      options: ['Wayne', 'Willard', 'Walter', 'Wade'],
+      answer: 'Willard',
+    },
+    {
+      question:
+        'What is the name of the school Kevin Durant attended after high school?',
+      options: [
+        'Montrose Christian School',
+        'Oak Hill Academy',
+        'Georgetown Prep School',
+        'DeMatha Catholic High School',
+      ],
+      answer: 'Oak Hill Academy',
+    },
+    {
+      question: "What is the name of Kevin Durant's signature sneaker line?",
+      options: ['KD2', 'KD7', 'KD10', 'KD12'],
+      answer: 'KD12',
+    },
+    {
+      question:
+        'What year did Kevin Durant become the youngest scoring champion in NBA history?',
+      options: ['2008', '2009', '2010', '2011'],
+      answer: '2010',
+    },
+    {
+      question: "What is the name of Kevin Durant's charity foundation?",
+      options: [
+        'The Kevin Durant Foundation',
+        'The KD Foundation',
+        'The Kevin Durant Charity Foundation',
+        'The Durant Charity Foundation',
+      ],
+      answer: 'The Kevin Durant Foundation',
+    },
+    {
+      question: 'What is the name of the book Kevin Durant wrote in 2017?',
+      options: [
+        'The Art of Basketball',
+        'The Game Within the Game',
+        'The Secret of Basketball',
+        'The Power of Basketball',
+      ],
+      answer: 'The Game Within the Game',
+    },
+    {
+      question:
+        'What year did Kevin Durant win his first All-Star Game MVP Award?',
+      options: ['2010', '2011', '2012', '2013'],
+      answer: '2012',
+    },
+    {
+      question: 'What is the name of the sports drink Kevin Durant endorses?',
+      options: ['Gatorade', 'Powerade', 'BODYARMOR', 'Power Water'],
+      answer: 'BODYARMOR',
+    },
+    {
+      question:
+        'What year did Kevin Durant win the NBA Rookie of the Year Award?',
+      options: ['2005', '2006', '2007', '2008'],
+      answer: '2008',
+    },
+    {
+      question: 'What year did Kevin Durant win the NBA Finals MVP Award?',
+      options: ['2012', '2013', '2014', '2015'],
+      answer: '2017',
+    },
+    {
+      question:
+        "What is the name of the documentary about Kevin Durant's life?",
+      options: [
+        'KD: The Making of a Legend',
+        'KD: The Story of a Legend',
+        'KD: The Life of a Legend',
+        'KD: The Legend of a Lifetime',
+      ],
+      answer: 'KD: The Making of a Legend',
+    },
+    {
+      question:
+        'What year did Kevin Durant win the NBA All-Star Game MVP Award?',
+      options: ['2012', '2013', '2014', '2015'],
+      answer: '2012',
+    },
+    {
+      question: "What is the name of Kevin Durant's production company?",
+      options: [
+        'Thirty Five Ventures',
+        'Fifty Five Ventures',
+        'Thirty Five Media',
+        'Thirty Five Productions',
+      ],
+      answer: 'Thirty Five Ventures',
+    },
+  ],
 };

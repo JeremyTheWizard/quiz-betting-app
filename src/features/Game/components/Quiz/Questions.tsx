@@ -84,25 +84,28 @@ const Questions = () => {
         />
       </div>
 
-      <p className='text-xl'>{questions[questionNumber].question}</p>
+      <p className='text-xl'>
+        {questions && questions[questionNumber].question}
+      </p>
       <RadioGroup
         name='options'
         className='mt-8 space-y-4'
         disabled={showAnswers}
       >
-        {questions[questionNumber].options.map((option: string) => {
-          return (
-            <RadioOption
-              key={option}
-              value={option}
-              onClick={() => setShowAnswers(true)}
-              showAnswers={showAnswers}
-              correctAnswer={questions[questionNumber].answer === option}
-            >
-              {option}
-            </RadioOption>
-          );
-        })}
+        {questions &&
+          questions[questionNumber].options.map((option: string) => {
+            return (
+              <RadioOption
+                key={option}
+                value={option}
+                onClick={() => setShowAnswers(true)}
+                showAnswers={showAnswers}
+                correctAnswer={questions[questionNumber].answer === option}
+              >
+                {option}
+              </RadioOption>
+            );
+          })}
       </RadioGroup>
     </section>
   );
