@@ -5,6 +5,8 @@ import OnDarkLogo from '@/components/logos/OnDarkLogo';
 import NextImage from '@/components/NextImage';
 
 import { useWeb3Context } from '@/contexts/Web3';
+import Dialog from '@/dialog/Dialog';
+import DialogTitle from '@/dialog/DialogTitle';
 
 type Props = {
   setSelectedAuth: React.Dispatch<
@@ -17,11 +19,14 @@ export default function Login({ setSelectedAuth }: Props) {
 
   const { magicConnect } = useWeb3Context();
 
+  const [showDialog, setShowDialog] = useState(false);
+
   const handleSignIn = (
     e: React.FormEvent<HTMLFormElement> & { target: { value: string } }
   ) => {
     e.preventDefault();
     magicConnect({ email });
+    setShowDialog(true);
   };
 
   return (
@@ -71,6 +76,18 @@ export default function Login({ setSelectedAuth }: Props) {
           </div>
         </div>
       </form>
+
+      <Dialog isOpen={showDialog} onClose={() => setShowDialog(false)}>
+        <div className='flex flex-col items-center text-center'>
+          <DialogTitle className='text-gradient-primary text-2xl'>
+            Check your email
+          </DialogTitle>
+          <div className='mt-8'>
+            <p>We emailed a magic link to {email}.</p>
+            <p>Click the link to log in or sign up.</p>
+          </div>
+        </div>
+      </Dialog>
     </>
   );
 }
