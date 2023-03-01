@@ -51,8 +51,8 @@ const Questions = () => {
         </div>
         <span className='w-full'>
           <PercentageBar
-            percentage={70}
-            name={`Question ${questionNumber} of ${questions?.length}`}
+            percentage={(questionNumber * 100) / questions?.length}
+            name={`Question ${questionNumber + 1} of ${questions?.length}`}
           />
         </span>
       </div>
