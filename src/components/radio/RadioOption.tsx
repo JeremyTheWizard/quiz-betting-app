@@ -1,9 +1,8 @@
 import { RadioGroup } from '@headlessui/react';
 import clsx from 'clsx';
-import { BigNumber } from 'ethers';
 
 type Props = {
-  value?: string | number | BigNumber;
+  value?: string | number;
   children?: string;
   className?: string;
 };

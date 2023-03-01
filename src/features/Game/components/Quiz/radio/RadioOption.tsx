@@ -1,11 +1,10 @@
 import { RadioGroup } from '@headlessui/react';
-import { BigNumber } from 'ethers';
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 
 import clsxm from '@/lib/clsxm';
 
 type Props = {
-  value?: string | number | BigNumber;
+  value?: string | number;
   children?: string;
   correctAnswer?: boolean;
   showAnswers?: boolean;
