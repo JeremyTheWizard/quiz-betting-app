@@ -1,4 +1,4 @@
-import TopShot from 0xTOPSHOTADDRESS
+import TopShot from 0x877931736ee77cff
 
 pub fun main(playID: UInt32): {String:String} {
 
