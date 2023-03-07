@@ -2,11 +2,14 @@ import { Dialog as HeadlessDialog, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { Fragment } from 'react';
 
+import clsxm from '@/lib/clsxm';
+
 type Props = {
   isOpen: boolean;
   onClose: () => void;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
+  childrenClassName?: string;
   children: React.ReactNode | React.ReactNode[];
 };
 
@@ -15,6 +18,7 @@ const Dialog = ({
   onClose,
   size = 'md',
   className,
+  childrenClassName,
   children,
 }: Props) => {
   return (
@@ -48,13 +52,14 @@ const Dialog = ({
               leaveTo='opacity-0 scale-95'
             >
               <HeadlessDialog.Panel
-                className={clsx(
+                className={clsxm(
                   size === 'sm' && 'max-w-md',
                   size === 'md' && 'max-w-xl',
                   size === 'lg' && 'max-w-2xl',
                   size === 'xl' && 'max-w-4xl',
-                  'w-full overflow-hidden  rounded-2xl bg-dark px-8 py-14 text-left align-middle shadow-xl mobile-demo:w-[475px]',
-                  'transition-all'
+                  'w-full overflow-hidden rounded-2xl bg-dark px-8 py-14 text-left align-middle shadow-xl mobile-demo:w-[475px]',
+                  'transition-all',
+                  childrenClassName
                 )}
               >
                 {children}

@@ -17,7 +17,7 @@ type Props = {
 export default function Login({ setSelectedAuth }: Props) {
   const [email, setEmail] = useState('');
 
-  const { magicConnect } = useWeb3Context();
+  const { magicConnect, fclConnect } = useWeb3Context();
 
   const [showDialog, setShowDialog] = useState(false);
 
@@ -47,8 +47,17 @@ export default function Login({ setSelectedAuth }: Props) {
                 <span className='h2 text-center text-xl font-normal text-primary-500'>
                   👋 Login
                 </span>
+                <Button
+                  variant='outlined-shadow'
+                  size='lg'
+                  className='mt-8'
+                  onClick={() => fclConnect()}
+                >
+                  Connect Wallet
+                </Button>
+                <span className='mt-6'>Or use email </span>
                 <input
-                  className='mt-6 w-full rounded-full py-3.5 px-4 text-black hover:border-primary-500'
+                  className='mt-3 w-full rounded-full py-3.5 px-4 text-black hover:border-primary-500'
                   type='email'
                   name='email'
                   required
@@ -59,7 +68,7 @@ export default function Login({ setSelectedAuth }: Props) {
                 />
               </div>
               <div className='relative bottom-20 w-full space-y-8'>
-                <Button type='submit' variant='outline' size='lg'>
+                <Button type='submit' variant='outlined-shadow' size='lg'>
                   Sign In
                 </Button>
                 <span className='block text-center text-sm'>
