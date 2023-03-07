@@ -53,7 +53,7 @@ const Dialog = ({
                   size === 'md' && 'max-w-xl',
                   size === 'lg' && 'max-w-2xl',
                   size === 'xl' && 'max-w-4xl',
-                  'w-full  overflow-hidden rounded-2xl bg-dark px-8 py-14 text-left align-middle shadow-xl',
+                  'w-full overflow-hidden  rounded-2xl bg-dark px-8 py-14 text-left align-middle shadow-xl mobile-demo:w-[475px]',
                   'transition-all'
                 )}
               >

@@ -5,6 +5,8 @@ import OnDarkLogo from '@/components/logos/OnDarkLogo';
 import NextImage from '@/components/NextImage';
 
 import { useWeb3Context } from '@/contexts/Web3';
+import Dialog from '@/dialog/Dialog';
+import DialogTitle from '@/dialog/DialogTitle';
 
 type Props = {
   setSelectedAuth: React.Dispatch<
@@ -17,11 +19,14 @@ export default function Login({ setSelectedAuth }: Props) {
 
   const { magicConnect } = useWeb3Context();
 
+  const [showDialog, setShowDialog] = useState(false);
+
   const handleSignIn = (
     e: React.FormEvent<HTMLFormElement> & { target: { value: string } }
   ) => {
     e.preventDefault();
     magicConnect({ email });
+    setShowDialog(true);
   };
 
   return (
@@ -33,10 +38,10 @@ export default function Login({ setSelectedAuth }: Props) {
             src='/images/ufc.png'
             alt='loading app'
             fill
-            className='absolute left-2/4 top-0 h-full w-screen -translate-x-1/2'
+            className='absolute left-2/4 top-0 min-h-screen w-screen -translate-x-1/2 mobile-demo:w-[500px]'
             imgClassName='object-cover object-left-top opacity-50'
           />
-          <div className='min-w-screen absolute flex h-full w-full max-w-[90vw] flex-col items-center inset-center'>
+          <div className='mobile-demo:min-w-auto min-w-screen absolute flex h-full w-full max-w-[90vw] flex-col items-center inset-center mobile-demo:w-[450px]'>
             <div className='absolute flex h-full w-full flex-col items-center pt-24'>
               <div className='flex h-full w-full flex-col items-center justify-center'>
                 <span className='h2 text-center text-xl font-normal text-primary-500'>
@@ -71,6 +76,18 @@ export default function Login({ setSelectedAuth }: Props) {
           </div>
         </div>
       </form>
+
+      <Dialog isOpen={showDialog} onClose={() => setShowDialog(false)}>
+        <div className='flex flex-col items-center text-center'>
+          <DialogTitle className='text-gradient-primary text-2xl'>
+            Check your email
+          </DialogTitle>
+          <div className='mt-8'>
+            <p>We emailed a magic link to {email}.</p>
+            <p>Click the link to log in or sign up.</p>
+          </div>
+        </div>
+      </Dialog>
     </>
   );
 }

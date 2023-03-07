@@ -6,7 +6,7 @@ import { Player } from '@/types/types';
 
 const FriendCard = ({ profileImage, handle, points, countryImage }: Player) => {
   return (
-    <div className='flex h-[100px] items-center bg-transparent'>
+    <div className='over flex h-[100px] items-center bg-transparent'>
       <div className='flex h-[63px] w-[135px] flex-col justify-between space-y-1.5 rounded-lg bg-white p-1.5'>
         <div className='flex gap-2'>
           <NextImage
@@ -20,7 +20,7 @@ const FriendCard = ({ profileImage, handle, points, countryImage }: Player) => {
             {handle}
           </span>
         </div>
-        <div className='mt-auto flex items-end justify-between gap-2'>
+        <div className='mt-auto flex items-center justify-between gap-2'>
           <NextImage
             src={countryImage ?? '/images/image-placeholder.png'}
             className='relative aspect-square h-6 w-6 rounded-full'

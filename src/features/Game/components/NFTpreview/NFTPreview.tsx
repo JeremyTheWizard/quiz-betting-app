@@ -9,8 +9,6 @@ import PercentageBar from '@/components/percentages/PercentageBar';
 import { NFTMedia } from '@/features/Game/constants/NFTs';
 import { NFTInfo } from '@/features/Game/types/Types';
 
-import { thousandSeparator } from '../../../../lib/thousandSeparator';
-
 type Props = {
   setShowNFTPreview: React.Dispatch<React.SetStateAction<boolean>>;
   NFTFlowId: string;
@@ -61,8 +59,10 @@ const NFTPreview = ({ NFTFlowId, setShowNFTPreview }: Props) => {
 
   return (
     <>
-      <div className='absolute left-2/4 top-0 h-full max-h-screen w-full -translate-x-2/4 overflow-hidden'>
+      <div className='absolute left-2/4 top-0 h-full max-h-screen w-full -translate-x-2/4 overflow-hidden mobile-demo:max-w-[500px]'>
         <video
+          webkit-playsinline={true}
+          playsInline
           ref={videoRef}
           onClick={() => setShowInfo(true)}
           className='h-full w-full scale-110 object-cover'
@@ -134,8 +134,8 @@ const NFTPreview = ({ NFTFlowId, setShowNFTPreview }: Props) => {
               <span className='text-3xl font-bold'>
                 {NFTInfo
                   ? NFTInfo.NFTTotalPrice
-                    ? thousandSeparator(
-                        (+NFTInfo?.NFTTotalPrice.split('.')[0]).toString()
+                    ? parseInt(
+                        (+NFTInfo?.NFTTotalPrice.split('.')[0]).toLocaleString()
                       )
                     : 'Not for sale'
                   : 'Loading...'}

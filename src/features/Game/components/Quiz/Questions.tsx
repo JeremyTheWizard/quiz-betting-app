@@ -1,4 +1,6 @@
+import { Capacitor } from '@capacitor/core';
 import { RadioGroup } from '@headlessui/react';
+import clsx from 'clsx';
 import React, { useEffect, useRef, useState } from 'react';
 import Countdown, { CountdownApi } from 'react-countdown';
 import { HiOutlineUserGroup } from 'react-icons/hi';
@@ -19,7 +21,7 @@ const Questions = () => {
   const countdown: React.MutableRefObject<CountdownApi | null> = useRef(null);
 
   const handleNextQuestion = () => {
-    if (questionNumber + 1 === questions.length) {
+    if (questionNumber + 1 === questions?.length) {
       setActiveStep('post-questions');
     } else {
       setShowAnswers(false);
@@ -39,7 +41,12 @@ const Questions = () => {
   }, [showAnswers]);
 
   return (
-    <section>
+    <section
+      className={clsx(
+        Capacitor.getPlatform() === 'ios' &&
+          'mt-8 pt-[calc(env(safe-area-inset-bottom))]'
+      )}
+    >
       <div className='flex w-full items-center gap-8'>
         <div className='flex items-center gap-2'>
           <span className='text-2xl text-primary-500'>
@@ -51,8 +58,8 @@ const Questions = () => {
         </div>
         <span className='w-full'>
           <PercentageBar
-            percentage={70}
-            name={`Question ${questionNumber} of ${questions?.length}`}
+            percentage={(questionNumber * 100) / questions?.length}
+            name={`Question ${questionNumber + 1} of ${questions?.length}`}
           />
         </span>
       </div>
@@ -84,25 +91,28 @@ const Questions = () => {
         />
       </div>
 
-      <p className='text-xl'>{questions[questionNumber].question}</p>
+      <p className='text-xl'>
+        {questions && questions[questionNumber].question}
+      </p>
       <RadioGroup
         name='options'
         className='mt-8 space-y-4'
         disabled={showAnswers}
       >
-        {questions[questionNumber].options.map((option: string) => {
-          return (
-            <RadioOption
-              key={option}
-              value={option}
-              onClick={() => setShowAnswers(true)}
-              showAnswers={showAnswers}
-              correctAnswer={questions[questionNumber].answer === option}
-            >
-              {option}
-            </RadioOption>
-          );
-        })}
+        {questions &&
+          questions[questionNumber].options.map((option: string) => {
+            return (
+              <RadioOption
+                key={option}
+                value={option}
+                onClick={() => setShowAnswers(true)}
+                showAnswers={showAnswers}
+                correctAnswer={questions[questionNumber].answer === option}
+              >
+                {option}
+              </RadioOption>
+            );
+          })}
       </RadioGroup>
     </section>
   );

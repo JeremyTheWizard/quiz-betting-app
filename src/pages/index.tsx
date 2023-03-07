@@ -1,3 +1,4 @@
+import { Capacitor } from '@capacitor/core';
 import { useEffect, useState } from 'react';
 
 import 'react-circular-progressbar/dist/styles.css';
@@ -52,24 +53,58 @@ export default function HomePage() {
   const loading = () => {
     return (
       <>
-        <OnDarkLogo />
-        <NextImage
-          src='/images/loading-app.gif'
-          alt='loading app'
-          fill
-          className='absolute left-2/4 top-0 h-full w-screen -translate-x-2/4'
-          imgClassName='object-cover object-top'
-        />
-        <div className='absolute bottom-20 left-2/4 h-48 w-48 -translate-x-2/4'>
-          <CircularProgress duration={2400} intervalDuration={200} value={0} />
-        </div>
+        {Capacitor.getPlatform() == 'ios' ? (
+          <div style={{ paddingTop: 'calc(2px + env(safe-area-inset-top))' }}>
+            <OnDarkLogo />
+            <NextImage
+              src='/images/loading-app.gif'
+              alt='loading app'
+              fill
+              className='absolute left-2/4 top-0 min-h-screen w-screen -translate-x-2/4 mobile-demo:w-[500px]'
+              imgClassName='object-cover object-top'
+            />
+            <div className='absolute bottom-20 left-2/4 h-48 w-48 -translate-x-2/4'>
+              <CircularProgress
+                duration={2400}
+                intervalDuration={200}
+                value={0}
+              />
+            </div>
+          </div>
+        ) : (
+          <>
+            <OnDarkLogo />
+            <NextImage
+              src='/images/loading-app.gif'
+              alt='loading app'
+              fill
+              className='absolute left-2/4 top-0 min-h-screen w-screen -translate-x-2/4 mobile-demo:w-[500px]'
+              imgClassName='object-cover object-top'
+            />
+            <div className='absolute bottom-20 left-2/4 h-48 w-48 -translate-x-2/4'>
+              <CircularProgress
+                duration={2400}
+                intervalDuration={200}
+                value={0}
+              />
+            </div>
+          </>
+        )}
       </>
     );
   };
 
   return (
-    <main className='mx-auto flex max-w-[90vw] flex-col pt-8 pb-10'>
-      {renderPage()}
-    </main>
+    <>
+      {Capacitor.getPlatform() == 'ios' ? (
+        <main className='mx-auto flex h-full max-w-[90vw] flex-col mobile-demo:max-w-[450px]'>
+          {renderPage()}
+        </main>
+      ) : (
+        <main className='mx-auto flex h-full max-w-[90vw] flex-col pt-8 pb-10 mobile-demo:max-w-[450px]'>
+          {renderPage()}
+        </main>
+      )}
+    </>
   );
 }

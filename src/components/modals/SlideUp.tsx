@@ -50,8 +50,8 @@ export default function Example({ open, setOpen, children }: Props) {
                       onClick={() => setOpen(false)}
                     ></div>
                   </Transition.Child>
-                  <div className='flex w-full flex-col overflow-y-scroll rounded-xl bg-white py-6 shadow-xl'>
-                    <div className='mx-auto mt-2 h-full w-[90vw]'>
+                  <div className='flex w-full flex-col overflow-y-scroll rounded-xl bg-white py-6 shadow-xl mobile-demo:mx-auto mobile-demo:w-[500px]'>
+                    <div className='mx-auto mt-2 h-full w-[90vw] mobile-demo:w-[450px] '>
                       {children}
                     </div>
                   </div>

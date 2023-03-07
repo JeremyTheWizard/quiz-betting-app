@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 
 // use npm published version
 import clsxm from '@/lib/clsxm';
-import { thousandSeparator } from '@/lib/thousandSeparator';
 
 import { NFTMedia } from '@/features/Game/constants/NFTs';
 import { useQuizContext } from '@/features/Game/contexts/QuizContext';
@@ -44,6 +43,8 @@ const NFTThumbnail = ({ NFTFlowId, showPrice, className, ...rest }: Props) => {
             {NFTInfo.NFTDescription ? NFTInfo.NFTDescription : 'Loading...'}
           </p>
           <video
+            webkit-playsinline={true}
+            playsInline
             className='mt-2 h-full w-full'
             src={NFTInfo.NFTVideoSrc}
             autoPlay
@@ -65,7 +66,9 @@ const NFTThumbnail = ({ NFTFlowId, showPrice, className, ...rest }: Props) => {
               >
                 {NFTInfo.NFTId
                   ? NFTInfo.NFTTotalPrice
-                    ? thousandSeparator(NFTInfo.NFTTotalPrice).split('.')[0]
+                    ? parseInt(
+                        NFTInfo.NFTTotalPrice.split('.')[0]
+                      ).toLocaleString()
                     : 'NOT FOR SALE'
                   : 'loading...'}
               </span>

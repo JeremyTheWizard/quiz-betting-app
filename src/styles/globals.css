@@ -30,6 +30,11 @@
   --tw-color-secondary-500: 242 243 2;
   --color-secondary-500: rgb(var(--tw-color-primary-500)); /* #F4F302 */
   /* #endregion  /**======== Primary Color =========== */
+
+  --safe-area-top: env(safe-area-inset-top);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0);
+  --safe-area-left: env(safe-area-inset-left, 0);
+  --safe-area-right: env(safe-area-inset-right, 0);
 }
 
 @layer base {
@@ -39,32 +44,32 @@
 
   /* #region  /**=========== Typography =========== */
   .h0 {
-    @apply font-primary text-3xl font-bold md:text-5xl;
+    @apply font-primary text-3xl font-bold;
   }
 
   h1,
   .h1 {
-    @apply font-primary text-3xl font-bold md:text-4xl;
+    @apply font-primary text-3xl font-bold;
   }
 
   h2,
   .h2 {
-    @apply font-primary text-xl font-bold md:text-3xl;
+    @apply font-primary text-xl font-bold;
   }
 
   h3,
   .h3 {
-    @apply font-primary text-lg font-bold md:text-2xl;
+    @apply font-primary text-lg font-bold;
   }
 
   h4,
   .h4 {
-    @apply font-primary text-base font-bold md:text-lg;
+    @apply font-primary text-base font-bold;
   }
 
   body,
   .p {
-    @apply font-secondary text-white md:text-base;
+    @apply font-secondary text-white;
   }
   /* #endregion  /**======== Typography =========== */
 
