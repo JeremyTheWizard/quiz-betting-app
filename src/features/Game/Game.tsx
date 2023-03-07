@@ -142,7 +142,7 @@ const Game = () => {
                     <QuizCard
                       key={index}
                       players={trendingQuizzes[quizIdentifier].players}
-                      entryPrice={trendingQuizzes[quizIdentifier].entryPrice}
+                      // entryPrice={trendingQuizzes[quizIdentifier].entryPrice}
                       title={trendingQuizzes[quizIdentifier].title}
                       image={trendingQuizzes[quizIdentifier].image}
                       onClick={() => handleTrendingQuizClick(quizIdentifier)}
@@ -162,7 +162,7 @@ const Game = () => {
                     <QuizCard
                       key={index}
                       players={tierQuizzes[quizIdentifier].players}
-                      entryPrice={tierQuizzes[quizIdentifier].entryPrice}
+                      // entryPrice={tierQuizzes[quizIdentifier].entryPrice}
                       title={tierQuizzes[quizIdentifier].title}
                       type={tierQuizzes[quizIdentifier].type}
                       image={tierQuizzes[quizIdentifier].image}
