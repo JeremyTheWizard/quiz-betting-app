@@ -30,6 +30,11 @@
   --tw-color-secondary-500: 242 243 2;
   --color-secondary-500: rgb(var(--tw-color-primary-500)); /* #F4F302 */
   /* #endregion  /**======== Primary Color =========== */
+
+  --safe-area-top: env(safe-area-inset-top);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0);
+  --safe-area-left: env(safe-area-inset-left, 0);
+  --safe-area-right: env(safe-area-inset-right, 0);
 }
 
 @layer base {

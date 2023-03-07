@@ -1,3 +1,5 @@
+import { Capacitor } from '@capacitor/core';
+import clsx from 'clsx';
 import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { CiMedal } from 'react-icons/ci';
@@ -17,7 +19,13 @@ const PostQuestions = () => {
   };
 
   return (
-    <div className='relative flex flex-col'>
+    <div
+      className={clsx(
+        Capacitor.getPlatform() === 'ios' &&
+          'mt-8 pt-[calc(env(safe-area-inset-bottom))]',
+        'relative flex flex-col'
+      )}
+    >
       <span
         className='absolute top-0 right-0 text-3xl'
         onClick={() => handleQuizDone()}

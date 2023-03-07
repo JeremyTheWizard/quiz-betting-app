@@ -1,4 +1,6 @@
+import { Capacitor } from '@capacitor/core';
 import { RadioGroup } from '@headlessui/react';
+import clsx from 'clsx';
 import React, { useEffect, useRef, useState } from 'react';
 import Countdown, { CountdownApi } from 'react-countdown';
 import { HiOutlineUserGroup } from 'react-icons/hi';
@@ -39,7 +41,12 @@ const Questions = () => {
   }, [showAnswers]);
 
   return (
-    <section>
+    <section
+      className={clsx(
+        Capacitor.getPlatform() === 'ios' &&
+          'mt-8 pt-[calc(env(safe-area-inset-bottom))]'
+      )}
+    >
       <div className='flex w-full items-center gap-8'>
         <div className='flex items-center gap-2'>
           <span className='text-2xl text-primary-500'>
