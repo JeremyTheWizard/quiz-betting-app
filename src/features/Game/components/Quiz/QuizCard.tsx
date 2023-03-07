@@ -42,7 +42,7 @@ const QuizCard = ({
           height='355px'
         />
         <div className='z-40 flex h-full w-1/3 flex-col'>
-          {time && !entryPrice ? (
+          {!time && entryPrice ? (
             <>
               <div className='flex gap-2'>
                 <div className='rounded-lg bg-white'>
@@ -54,7 +54,7 @@ const QuizCard = ({
                 </div>
               </div>
               <div className='mt-2 font-primary text-xs font-bold text-black'>
-                <span className='block whitespace-nowrap'>MIN. POOL BET</span>
+                <span className='block whitespace-nowrap'>MAX. POOL BET</span>
                 <div className='flex gap-1'>
                   <span>${entryPrice}</span>
                   <span className='self-top text-[6px]'>FLOW</span>
