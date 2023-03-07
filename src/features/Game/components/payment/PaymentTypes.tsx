@@ -154,8 +154,11 @@ const PaymentTypes = () => {
                     handleCopy();
                   }}
                 >
+                  {/* The flow token has 9 decimals*/}
                   <span className='mx-auto w-full'>
-                    {userBalance === undefined ? 'Loading...' : userBalance}
+                    {userBalance === undefined
+                      ? 'Loading...'
+                      : userBalance / 100000000}
                   </span>
                 </Button>
               </div>
