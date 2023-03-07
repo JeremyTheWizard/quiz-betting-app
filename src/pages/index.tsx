@@ -13,6 +13,8 @@ import QuizContextProvider from '@/features/Game/contexts/QuizContext';
 import TabsContextProvider from '@/features/Game/contexts/TabsContext';
 import Game from '@/features/Game/Game';
 
+import { Platform } from '../constants/types';
+
 /**
  * SVGR Support
  * Caveat: No React Props Type.
@@ -24,17 +26,29 @@ import Game from '@/features/Game/Game';
 export default function HomePage() {
   const { user } = useWeb3Context();
   const [loginReady, setLoginReady] = useState(false);
+  // used to avoid hydration failed due to server side rendering
+  const [platform, setPlatform] = useState<Platform | undefined>(undefined);
 
   useEffect(() => {
-    /* Due to bad browser performance preloading images, a timeout is used instead to still show the loading screen.
-    Check https://github.com/vercel/next.js/pull/19118 */
-    setTimeout(() => {
-      setLoginReady(true);
-    }, 2800);
+    setPlatform(Capacitor.getPlatform() as Platform);
+  }, []);
+
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform()) {
+      /* Due to bad browser performance preloading images, a timeout is used instead to still show the loading screen.
+      Check https://github.com/vercel/next.js/pull/19118 */
+      setTimeout(() => {
+        setLoginReady(true);
+      }, 2800);
+    }
   }, []);
 
   const renderPage = () => {
-    if (loginReady) {
+    if (platform === undefined) {
+      return;
+    }
+    // Native platforms can't have gifs as loading screens
+    if (loginReady || ['web', 'ios', 'android'].includes(platform ?? '')) {
       if (user.magic.loggedIn || user.fcl.loggedIn) {
         return (
           <QuizContextProvider>
@@ -53,7 +67,7 @@ export default function HomePage() {
   const loading = () => {
     return (
       <>
-        {Capacitor.getPlatform() == 'ios' ? (
+        {platform === 'ios' ? (
           <div style={{ paddingTop: 'calc(2px + env(safe-area-inset-top))' }}>
             <OnDarkLogo />
             <NextImage
@@ -96,7 +110,9 @@ export default function HomePage() {
 
   return (
     <>
-      {Capacitor.getPlatform() == 'ios' ? (
+      {platform === undefined ? (
+        <></>
+      ) : platform === 'ios' ? (
         <main className='mx-auto flex h-full max-w-[90vw] flex-col mobile-demo:max-w-[450px]'>
           {renderPage()}
         </main>
