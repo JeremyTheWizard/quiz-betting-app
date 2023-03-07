@@ -1,3 +1,4 @@
+import { Capacitor } from '@capacitor/core';
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { CiMedal } from 'react-icons/ci';
@@ -24,36 +25,80 @@ const LeaderBoard = () => {
   const main = () => {
     return (
       <div>
-        <div className='flex items-center justify-center gap-1'>
-          <div className='flex w-full items-center justify-center gap-2'>
-            <span className='text-2xl text-primary-500'>
-              <CiMedal />
-            </span>
-            <span className='text-gradient-primary font-primary text-lg font-bold'>
-              REWARDS
-            </span>
+        {Capacitor.getPlatform() === 'ios' ? (
+          <div
+            className='sticky top-0 z-[999] flex w-full bg-dark pb-4'
+            style={{
+              paddingTop: 'calc(2px + env(safe-area-inset-top))',
+            }}
+          >
+            <div className='w-[85vw] mobile-demo:w-[450px]'>
+              <div className='flex w-full items-center justify-center gap-1'>
+                <div className='flex w-full items-center justify-center gap-2'>
+                  <span className='text-2xl text-primary-500'>
+                    <CiMedal />
+                  </span>
+                  <span className='text-gradient-primary font-primary text-lg font-bold'>
+                    REWARDS
+                  </span>
+                </div>
+                <Currency />
+              </div>
+            </div>
           </div>
-          <Currency />
-        </div>
+        ) : (
+          <div className='flex items-center justify-center gap-1'>
+            <div className='flex w-full items-center justify-center gap-2'>
+              <span className='text-2xl text-primary-500'>
+                <CiMedal />
+              </span>
+              <span className='text-gradient-primary font-primary text-lg font-bold'>
+                REWARDS
+              </span>
+            </div>
+            <Currency />
+          </div>
+        )}
         <TabGroup>
-          <Tabs className='m-10 mx-auto w-full'>
-            <Tab>
-              <div className='flex justify-center gap-2'>
-                <span className='text-xl'>
-                  <IoDiamondOutline />
-                </span>
-                <span className='font-bold'>NFTs</span>
-              </div>
-            </Tab>
-            <Tab>
-              <div className='flex justify-center gap-2'>
-                <span className='text-xl'>
-                  <RiVipCrownLine />
-                </span>
-                <span className='font-bold'>Leaderboard</span>
-              </div>
-            </Tab>
-          </Tabs>
+          {Capacitor.getPlatform() === 'ios' ? (
+            <Tabs className='m-6 mx-auto w-full'>
+              <Tab>
+                <div className='flex justify-center gap-2'>
+                  <span className='text-xl'>
+                    <IoDiamondOutline />
+                  </span>
+                  <span className='font-bold'>NFTs</span>
+                </div>
+              </Tab>
+              <Tab>
+                <div className='flex justify-center gap-2'>
+                  <span className='text-xl'>
+                    <RiVipCrownLine />
+                  </span>
+                  <span className='font-bold'>Leaderboard</span>
+                </div>
+              </Tab>
+            </Tabs>
+          ) : (
+            <Tabs className='m-10 mx-auto w-full'>
+              <Tab>
+                <div className='flex justify-center gap-2'>
+                  <span className='text-xl'>
+                    <IoDiamondOutline />
+                  </span>
+                  <span className='font-bold'>NFTs</span>
+                </div>
+              </Tab>
+              <Tab>
+                <div className='flex justify-center gap-2'>
+                  <span className='text-xl'>
+                    <RiVipCrownLine />
+                  </span>
+                  <span className='font-bold'>Leaderboard</span>
+                </div>
+              </Tab>
+            </Tabs>
+          )}
           <TabPanels>
             <TabPanel>
               <NFTS

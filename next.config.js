@@ -9,6 +9,7 @@ const nextConfig = {
 
   // Uncoment to add domain whitelist
   images: {
+    unoptimized: true,
     domains: ['i.pravatar.cc', 'assets.nbatopshot.com'],
     remotePatterns: [
       {

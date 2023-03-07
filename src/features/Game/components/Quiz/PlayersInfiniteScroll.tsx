@@ -15,27 +15,29 @@ type Props = {
 
 const PlayersInfiniteScroll = ({ players, className }: Props) => {
   return (
-    <div
-      className={clsxm([
-        'hover:pause relative flex animate-auto-friends-slider gap-2.5',
-        className,
-      ])}
-    >
-      {[...players, ...players].map((player, index) => {
-        return (
-          <PlayerCard
-            key={index}
-            profileImage={player.profileImage}
-            handle={player.handle}
-            points={player.points}
-            countryImage={
-              countryFlagsMapping[
-                player.country as keyof typeof countryFlagsMapping
-              ]
-            }
-          />
-        );
-      })}
+    <div className='overflow-x-hidden'>
+      <div
+        className={clsxm([
+          'hover:pause relative flex animate-auto-friends-slider gap-2.5',
+          className,
+        ])}
+      >
+        {[...players, ...players].map((player, index) => {
+          return (
+            <PlayerCard
+              key={index}
+              profileImage={player.profileImage}
+              handle={player.handle}
+              points={player.points}
+              countryImage={
+                countryFlagsMapping[
+                  player.country as keyof typeof countryFlagsMapping
+                ]
+              }
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

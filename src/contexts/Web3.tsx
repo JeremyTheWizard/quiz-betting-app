@@ -134,7 +134,7 @@ export const Web3ContextProvider = ({
       walletDiscoveryInclude,
       addresses,
     } = NETWORK;
-    const iconUrl = window.location.origin + '/images/image-placeholder.png';
+    const iconUrl = window.location.origin + '/images/fanbet-logo.webp';
     const appTitle = process.env.NEXT_PUBLIC_APP_NAME || 'FANBET';
 
     fcl.config({

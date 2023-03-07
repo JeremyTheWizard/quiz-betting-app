@@ -1,4 +1,6 @@
+import { Capacitor } from '@capacitor/core';
 import axios from 'axios';
+import clsx from 'clsx';
 import React, { useCallback, useEffect, useState } from 'react';
 import { BsArrowLeft } from 'react-icons/bs';
 import { CiMedal } from 'react-icons/ci';
@@ -54,8 +56,14 @@ const PreQuestions = () => {
   const summary = () => {
     return (
       <div>
-        <div className='flex justify-between gap-2'>
-          <div className='flex items-center gap-4'>
+        <div
+          className={clsx(
+            Capacitor.getPlatform() === 'ios' &&
+              'sticky top-0 z-[999] bg-dark pt-[calc(2px+env(safe-area-inset-top))] pb-4',
+            'flex justify-between gap-2'
+          )}
+        >
+          <div className={clsx('flex items-center gap-4')}>
             <span
               onClick={() => reset()}
               className='cursor-pointer text-2xl text-white'
@@ -65,7 +73,12 @@ const PreQuestions = () => {
             <span className='h2'>POOL BET</span>
           </div>
         </div>
-        <div className='mt-6 flex w-full flex-col items-center'>
+        <div
+          className={clsx([
+            Capacitor.getPlatform() === 'ios' ? 'mt-2' : 'mt-6',
+            'flex w-full flex-col items-center',
+          ])}
+        >
           <div className='text-gradient-primary mb-4 flex items-center gap-1'>
             <span className='text-2xl text-primary-500'>
               <CiMedal />

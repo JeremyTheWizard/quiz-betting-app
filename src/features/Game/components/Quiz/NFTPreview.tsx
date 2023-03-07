@@ -1,3 +1,5 @@
+import { Capacitor } from '@capacitor/core';
+import clsx from 'clsx';
 import { useRef, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 
@@ -30,7 +32,12 @@ const NFTPreview = ({ setShowNFTPreview }: Props) => {
   };
 
   return (
-    <>
+    <div
+      className={clsx([
+        Capacitor.getPlatform() === 'ios' &&
+          'pt-[calc(2px+env(safe-area-inset-top))]',
+      ])}
+    >
       <div className='absolute left-2/4 top-0 h-full max-h-screen w-full -translate-x-2/4 overflow-hidden mobile-demo:max-h-[844px] mobile-demo:w-[500px]'>
         <video
           webkit-playsinline={true}
@@ -52,7 +59,7 @@ const NFTPreview = ({ setShowNFTPreview }: Props) => {
       </div>
       <PercentageBar percentage={(currentTime / duration) * 100} />
       <div className='z-40 mt-6 flex w-full items-center justify-between'>
-        <div className='flex w-full items-center gap-2'>
+        <div className='z-40 flex w-full items-center gap-2'>
           <div className='rounded-full bg-gradient-primary'>
             <NextImage
               src='/images/prem.png'
@@ -63,11 +70,16 @@ const NFTPreview = ({ setShowNFTPreview }: Props) => {
             />
           </div>
           <div>
-            <span className='text-se block text-base'>{NFTInfo.NFTName}</span>
-            <span className='text-xs'>Serial: {NFTInfo.version}</span>
+            <span className='text-se z-40 block text-base'>
+              {NFTInfo.NFTName}
+            </span>
+            <span className='z-40 text-xs'>Serial: {NFTInfo.version}</span>
           </div>
         </div>
-        <span className='text-2xl' onClick={() => setShowNFTPreview(false)}>
+        <span
+          className='z-40 text-2xl'
+          onClick={() => setShowNFTPreview(false)}
+        >
           <AiOutlineClose />
         </span>
       </div>
@@ -128,7 +140,7 @@ const NFTPreview = ({ setShowNFTPreview }: Props) => {
           </div>
         </SlideUp>
       )}
-    </>
+    </div>
   );
 };
 

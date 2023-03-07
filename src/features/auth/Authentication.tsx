@@ -1,3 +1,4 @@
+import { Capacitor } from '@capacitor/core';
 import React, { useState } from 'react';
 
 import Button from '@/components/buttons/Button';
@@ -111,7 +112,16 @@ const Authentication = () => {
   };
 
   return (
-    <div className='flex h-full w-full flex-col px-0'>
+    <div
+      className='flex h-full w-full flex-col px-0'
+      style={{
+        paddingTop: `${
+          Capacitor.getPlatform() == 'ios'
+            ? 'calc(2px + env(safe-area-inset-top))'
+            : '0px'
+        }`,
+      }}
+    >
       {renderAuthentication()}
     </div>
   );

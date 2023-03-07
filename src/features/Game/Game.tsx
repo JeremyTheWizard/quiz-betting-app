@@ -1,3 +1,4 @@
+import { Capacitor } from '@capacitor/core';
 import { Tab } from '@headlessui/react';
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -80,25 +81,55 @@ const Game = () => {
     return (
       <>
         <section className='mb-3 max-w-[95vw] space-y-9 mobile-demo:w-[450px]'>
-          <div className='flex gap-4'>
-            <TextField
-              startAdornment='search'
-              placeHolder='Search by player or team'
-            />
-          </div>
-
-          <Tab.List className='flex flex-col items-center gap-4 mobile-m:flex-row'>
-            {categories.map((category, index) => {
-              return (
-                <Tab
-                  key={index}
-                  className='flex w-full justify-center rounded-full border-2 border-primary-500 p-2 hover:bg-green-600 active:bg-green-500'
-                >
-                  {category.image}
-                </Tab>
-              );
-            })}
-          </Tab.List>
+          {Capacitor.isNativePlatform() ? (
+            <div
+              className='sticky top-0 z-[999] flex bg-dark pb-4'
+              style={{
+                paddingTop: 'calc(2px + env(safe-area-inset-top))',
+              }}
+            >
+              <div className='mx-auto w-[85vw] mobile-demo:w-[450px]'>
+                <TextField
+                  startAdornment='search'
+                  placeHolder='Search by player or team'
+                />
+              </div>
+            </div>
+          ) : (
+            <div className='flex gap-4'>
+              <TextField
+                startAdornment='search'
+                placeHolder='Search by player or team'
+              />
+            </div>
+          )}
+          {Capacitor.getPlatform() === 'ios' ? (
+            <Tab.List className='!mt-5 flex flex-col items-center gap-4 mobile-m:flex-row'>
+              {categories.map((category, index) => {
+                return (
+                  <Tab
+                    key={index}
+                    className='flex w-full justify-center rounded-full border-2 border-primary-500 p-2 hover:bg-green-600 active:bg-green-500'
+                  >
+                    {category.image}
+                  </Tab>
+                );
+              })}
+            </Tab.List>
+          ) : (
+            <Tab.List className='flex flex-col items-center gap-4 mobile-m:flex-row'>
+              {categories.map((category, index) => {
+                return (
+                  <Tab
+                    key={index}
+                    className='flex w-full justify-center rounded-full border-2 border-primary-500 p-2 hover:bg-green-600 active:bg-green-500'
+                  >
+                    {category.image}
+                  </Tab>
+                );
+              })}
+            </Tab.List>
+          )}
           <TabPanel className='space-y-9'>
             <div>
               <h2>Trending Quiz Bets</h2>
