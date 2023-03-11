@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Button from '@/components/buttons/Button';
 import OnDarkLogo from '@/components/logos/OnDarkLogo';
 import NextImage from '@/components/NextImage';
+import Loading from '@/components/SVGs/Loading';
 
 import { useWeb3Context } from '@/contexts/Web3';
 import Dialog from '@/dialog/Dialog';
@@ -92,7 +93,11 @@ export default function Login({ setSelectedAuth }: Props) {
           </DialogTitle>
           <div className='mt-8'>
             <p>We emailed a magic link to {email}.</p>
-            <p>Click the link to log in or sign up.</p>
+            <p className='mb-6'>Click the link to log in or sign up.</p>
+            <Loading />
+            <p className='mt-6 text-xs'>
+              (Once confirmed it might take a few moments)
+            </p>
           </div>
         </div>
       </Dialog>
