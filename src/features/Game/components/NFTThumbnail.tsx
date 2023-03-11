@@ -1,3 +1,4 @@
+import { Capacitor } from '@capacitor/core';
 import axios from 'axios';
 import clsx from 'clsx';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -19,10 +20,16 @@ const NFTThumbnail = ({ NFTFlowId, showPrice, className, ...rest }: Props) => {
 
   const getNFTFlowIdInfo = useCallback(async () => {
     try {
+      const apiEndpoint = '/api/graphql/minted-moment';
       const data = await axios
-        .get('/api/grapql/minted-moment', {
-          params: { flowid: NFTFlowId },
-        })
+        .get(
+          Capacitor.isNativePlatform()
+            ? `https://fanbet.vercel.app${apiEndpoint}`
+            : apiEndpoint,
+          {
+            params: { flowid: NFTFlowId },
+          }
+        )
         .then((res) => res.data.data);
 
       setNFTInfo({
