@@ -1,3 +1,4 @@
+import { Capacitor } from '@capacitor/core';
 import axios from 'axios';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -28,10 +29,16 @@ const NFTPreview = ({ NFTFlowId, setShowNFTPreview }: Props) => {
 
   const getNFTFlowIdInfo = useCallback(async () => {
     try {
+      const apiEndpoint = '/api/graphql/minted-moment';
       const data = await axios
-        .get('/api/grapql/minted-moment', {
-          params: { flowid: NFTFlowId },
-        })
+        .get(
+          Capacitor.isNativePlatform()
+            ? `https://fanbet.vercel.app${apiEndpoint}}`
+            : apiEndpoint,
+          {
+            params: { flowid: NFTFlowId },
+          }
+        )
         .then((res) => res.data.data);
 
       setNFTInfo((prev) => ({

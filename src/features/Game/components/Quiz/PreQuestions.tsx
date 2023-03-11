@@ -22,10 +22,16 @@ const PreQuestions = () => {
 
   const getNFTFlowIdInfo = useCallback(async () => {
     try {
+      const apiEndpoint = '/api/graphql/minted-moment';
       const data = await axios
-        .get('/api/grapql/minted-moment', {
-          params: { flowid: preQuestions.NFTFlowId },
-        })
+        .get(
+          Capacitor.isNativePlatform()
+            ? `https://fanbet.vercel.app${apiEndpoint}`
+            : apiEndpoint,
+          {
+            params: { flowid: preQuestions.NFTFlowId },
+          }
+        )
         .then((res) => res.data.data);
 
       const NFTTotalPrice = data.getMintedMoment.data.price;
