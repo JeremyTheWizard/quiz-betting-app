@@ -100,11 +100,13 @@ const PreQuestions = () => {
             <div className='h3 mx-auto w-9/12 rounded-full bg-gradient-primary py-3 px-2.5 text-black'>
               <div className='flex justify-center gap-1'>
                 <span>
-                  MAX BET $
+                  MAX BET{' '}
                   {NFTInfo
                     ? NFTInfo.NFTTotalPrice
-                      ? +NFTInfo?.NFTTotalPrice.split('.')[0] /
-                        preQuestions.players.length
+                      ? `$${
+                          +NFTInfo?.NFTTotalPrice.split('.')[0] /
+                          preQuestions.players.length
+                        }`
                       : "Can't calculate"
                     : 'Loading...'}
                 </span>
