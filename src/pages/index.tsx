@@ -48,7 +48,7 @@ export default function HomePage() {
       return;
     }
     // Native platforms can't have gifs as loading screens
-    if (loginReady || ['web', 'ios', 'android'].includes(platform ?? '')) {
+    if (loginReady || ['ios', 'android'].includes(platform ?? '')) {
       if (user.magic.loggedIn || user.fcl.loggedIn) {
         return (
           <QuizContextProvider>
